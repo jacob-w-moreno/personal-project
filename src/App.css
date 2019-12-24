@@ -1,38 +1,112 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
 .App {
-  text-align: center;
+    height: 200vh;
+    background: #757575;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+    font-family: raleway;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ===== ===== CLASSES ===== ===== */
+.auth-button{
+    height: 50px;
+    width: 150px;
+    background: #ff9801;
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+.auth-inputs{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    justify-content: space-around;
+}
+.auth-cancel{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+
+    height: 40px;
+    width: 80px;
+    background: #ff9801;
+    border-radius: 10px;
+}
+.auth-secondary{
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.auth-secondary-text{
+    font-family: 'source sans pro';
+    font-size: 33px;
+    margin-bottom: 40px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ===== ===== LANDING ===== ===== */
+#landing-main{
+    padding-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#landing-header{
+    height: 60px;
+    background: #757575;
+    width: 100%;
+    padding: 0px 15px;
+    box-sizing: border-box;
+    margin-bottom: 40px;
+    position: fixed;
+    top: 0;
+
+    font-family: 'source sans pro';
+    font-size: 33px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#landing-login{
+    height: 40px;
+    width: 85px;
+    background: #ff9801;
+    border-radius: 10px;
+    border: none;
+
+    font-size: 15px;
+}
+#landing-intro{
+    margin-top: 200px;
+}
+#landing-liquid{
+    font-family: raleway;
+    color: white;
+}
+#landing-budget{
+    font-weight: bold;
+    color: #ff9801;
+}
+#landing-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* ===== ===== HEADER ===== ===== */
+#header-main{
+    height: 70px;
+    background: #ff9801;
 }
+#header-username{
+    position: fixed;
+    top: 20px;
+    right: 20px;
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    font-size: 30px;
 }
