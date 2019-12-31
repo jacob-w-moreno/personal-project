@@ -4,6 +4,7 @@ const express = require('express'),
       session = require('express-session'),
       gradient = require('gradient-string'),
       authCtrl = require('./authCtrl'),
+      catCtrl = require('./catCtrl'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       app = express();
 
@@ -24,7 +25,12 @@ massive(CONNECTION_STRING).then(db=>{
 app.post('/api/register', authCtrl.register);
 app.post('/api/login', authCtrl.login);
 app.post('/api/logout', authCtrl.logout);
-app.get('/api/user/:id', authCtrl.getUser)
+app.get('/api/user', authCtrl.checkUser)
+// ===== ===== ===== ===== ====
+
+// ===== ===== CATEGORY =====
+app.post('/api/category', catCtrl.addCat)
+app.get('/api/category', catCtrl.getCat)
 // ===== ===== ===== ===== ====
 
 const port = SERVER_PORT;

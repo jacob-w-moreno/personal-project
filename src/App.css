@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 
 .App {
-    height: 200vh;
+    height: 100vh;
     background: #757575;
     text-align: center;
     display: flex;
@@ -14,18 +14,41 @@
 /* ===== ===== CLASSES ===== ===== */
 .auth-button{
     height: 50px;
-    width: 150px;
+    width: 300px;
     background: #ff9801;
+    border: none;
     border-radius: 10px;
+
+    font-size: 20px;
+}
+.auth-inputs{
+    width: calc(100vw - 40px);
+    padding: 0px 20px;
+    /* height: 200px; */
+    /* background: #3a3a3a; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    margin-bottom: 30px;
+}
+.auth-name{
+    height: 30px;
+    border-radius: 7px;
+
+    padding-left: 10px;
 
     font-size: 15px;
 }
-.auth-inputs{
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    height: 80px;
-    justify-content: space-around;
+.auth-input{
+    height: 30px;
+    border-radius: 7px;
+
+    margin-top: 15px;
+    padding-left: 10px;
+
+    font-size: 15px;
 }
 .auth-cancel{
     position: fixed;
@@ -35,7 +58,9 @@
     height: 40px;
     width: 80px;
     background: #ff9801;
+    border: none;
     border-radius: 10px;
+    font-size: 20px;
 }
 .auth-secondary{
     padding-top: 100px;
@@ -44,9 +69,26 @@
     align-items: center;
 }
 .auth-secondary-text{
+    margin-bottom: 40px;
+
     font-family: 'source sans pro';
     font-size: 33px;
-    margin-bottom: 40px;
+    color: white;
+}
+.temp{
+    height: 40px;
+    width: 80px;
+    background: #ff9801;
+    border-radius: 10px;
+    font-size: 20px;
+}
+.cb-form-button{
+    height: 35px;
+    width: 175px;
+    background: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 20px;
 }
 
 /* ===== ===== LANDING ===== ===== */
@@ -82,7 +124,26 @@
     font-size: 15px;
 }
 #landing-intro{
-    margin-top: 200px;
+    margin-top: 100px;
+    font-size: 27px;
+    color: white;
+    width: calc(100vw - 30px);
+}
+#landing-pic{
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 350px;
+    width: calc(100vw - 40px);
+    border: 2px solid #ff9801;
+    border-radius: 10px;
+
+    color: #ff9801;
+    font-size: 40px;
 }
 #landing-liquid{
     font-family: raleway;
@@ -109,4 +170,112 @@
     right: 20px;
 
     font-size: 30px;
+}
+
+/* ===== ===== REGISTER ===== ===== */
+#register-names{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+#register-login{
+    margin-top: 30px;
+
+    /* font-size: 20px; */
+    color: white;
+}
+
+/* ===== ===== BUDGET ===== ===== */
+#budget-landing{
+    margin-top: 50px;
+
+    color: white;
+    font-size: 25px;
+}
+#budget-default{
+    height: 400px;
+    width: 100vw;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Blue_circle_for_diabetes.svg/1200px-Blue_circle_for_diabetes.svg.png");
+    background-size: cover;
+}
+#budget-create{
+    position: fixed;
+    top: 360px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ===== ===== CREATE BUDGET ===== ===== */
+#cb-text{
+    margin-top: 20px;
+    color: white;
+    font-size: 25px;
+}
+#cb-inputs{
+    width: 100vw;
+    height: calc(100vh - 70px);
+    background: #757575;
+    
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 20px 0px;
+    position: fixed;
+    bottom: 0px;
+
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    color: white;
+}
+#cb-add-new{
+    margin: 10px auto;
+    padding-left: 10px;
+    box-sizing: border-box;
+
+    height: 40px;
+    width: calc(100vw - 40px);
+    background: none;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 20px;
+
+    display: flex;
+    text-align: left;
+    align-items: center;
+}
+#cb-form-buttons{
+    margin: 20px 0px;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+}
+#cb-doll-cat{
+    margin: 8px auto;
+    padding: 0px 15px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 10px;
+    height: 35px;
+    width: calc(100vw - 40px);
+    background: white;
+}
+#cb-keyboard{
+    height: 270px;
+    width: 100vw;
+    background-image: url('https://i.stack.imgur.com/sxJEn.png');
+    background-size: cover;
+
+    position: fixed;
+    bottom: 0px;
+    margin: 0 auto;
+}
+#cb-categories{
+    margin-top: 30px;
+    overflow: scroll;
 }

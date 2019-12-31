@@ -6,7 +6,7 @@ const Landing = (props) => {
         <div id='landing-main'>
             <header id='landing-header'>
                 <div>
-                    <span id='landing-liquid'> liquid</span>
+                    <span id='landing-liquid'>liquid</span>
                     <span id='landing-budget'>budget</span>
                 </div>
                 <Link to='/login'>
@@ -16,15 +16,17 @@ const Landing = (props) => {
                     </button>
                 </Link>
             </header>
-{/* ===== ===== ===== ===== ===== ===== YOU ARE HERE ===== ===== ===== ===== ===== ===== */}
             <p id='landing-intro'>
-                <span id='landing-liquid'>liquid</span> <span id='landing-budget'>budget</span> makes it easy to set and achieve financial goals—even if you have an inconsistent income.
+                Creating a budget that works for you has never been easier.
             </p>
+{/* ===== ===== ===== ===== ===== ===== YOU ARE HERE ===== ===== ===== ===== ===== ===== */}
+            <div
+                id='landing-pic'>insert pic here</div>
             <div id='landing-buttons'>
                 <Link to='/register'>
                     <button 
                         className='auth-button'>
-                        Sign Up! (It's free!)
+                        Sign Up
                         </button>
                 </Link>
                 

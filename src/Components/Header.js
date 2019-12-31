@@ -1,15 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import getUser from '../redux/reducer';
+import {getUser} from '../redux/reducer';
 import axios from 'axios';
 
 const Header = (props) => {
-    console.log(props)
-    // const getUser = () => {
-    //     axios
-    //         .get(`/api/user/${id}`)
-    // }
+    
+    const getUser = () => {
+        axios
+            .get('/api/user')
+            .then((res) => {
+                props.getUser(res.data)
+            })
+            .catch(() => console.log('did not get user'))
+    }
+    
+    useEffect(() => {
+        getUser()}, [])
+
     return (
         <div id='header-main'>
             <Link to='/'><button

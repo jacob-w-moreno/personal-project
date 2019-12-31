@@ -37,11 +37,11 @@ module.exports = {
             res.status(401).send('Incorrect password')
         }
     },
-    getUser: (req, res) => {
+    checkUser: (req, res) => {
         if(req.session.user){
             res.status(200).send(req.session.user);
         } else {
-            res.status(200).send('');
+            res.status(400).send('User not found');
         }
     },
     logout: (req, res) => {

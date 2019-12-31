@@ -21,8 +21,16 @@ const Register = (props) => {
             <Link to='/'><button 
                 className='auth-cancel'>
                 Cancel</button></Link>
-            <p className='auth-secondary-text'>Register</p>
+            <p className='auth-secondary-text'>Create an account to start budgeting today.</p>
             <div className='auth-inputs'>
+                <div id='register-names'>
+                    <input
+                        className='auth-name'
+                        placeholder='First Name'/>
+                    <input
+                        className='auth-name'
+                        placeholder='Last Name'/>
+                </div>
                 <input
                     className='auth-input'
                     maxLength='100'
@@ -34,7 +42,7 @@ const Register = (props) => {
                     }}
                     />
                 <input 
-                className='auth-input'
+                    className='auth-input'
                     type='password'
                     maxLength='30'
                     placeholder='Enter Password'
@@ -49,6 +57,7 @@ const Register = (props) => {
                 className='auth-button'
                 onClick = {register}>
                 Create Account</button>
+            <Link to='/login' id='register-login'>Already have an account? Login.</Link>
         </div>
     )
 }

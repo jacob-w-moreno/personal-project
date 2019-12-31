@@ -23,9 +23,10 @@ const Login = (props) => {
             <Link to='/'><button 
                 className='auth-cancel'>
                 Cancel</button></Link>
-            <p className='auth-secondary-text'>Login</p>
+            <p className='auth-secondary-text'>Welcome back!</p>
             <div className='auth-inputs'>
                 <input
+                    className='auth-input'
                     maxLength='100'
                     placeholder='Enter Email'
                     value={email}
@@ -34,6 +35,7 @@ const Login = (props) => {
                         console.log({email})
                     }}/>
                 <input 
+                    className='auth-input'
                     type='password'
                     maxLength='30'
                     placeholder='Enter Password'
