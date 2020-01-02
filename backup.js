@@ -1,8 +1,9 @@
+// CREATE BUDGET
+
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getCategory} from '../redux/reducer';
-import Category from './Category';
 import axios from 'axios';
 
 const CreateBudget = (props) => {
@@ -31,6 +32,7 @@ const CreateBudget = (props) => {
             .delete(`/api/category/${id}`)
             .then(() => {
                 getCategory()
+                console.log(id)
             })
             .catch(() => console.log('cannot delete'))
     }
@@ -50,22 +52,34 @@ const CreateBudget = (props) => {
 
     return(
         <div id='cb-main'>
-            <p id='temp-total'>$4,200<br/>remaining</p>
-            {/* {props.category
-                .map((element, index) => {element.category_value, element.category_spent})
-                .reduce((acc, curr) => acc + curr)} */}
-            {props.category.map((element, index) => {
-                return(
-                    <Category
-                        key = {index}
-                        category_id = {element.category_id}
-                        category_name = {element.category_name}
-                        category_value = {element.category_value}
-                        category_type = {element.category_type}
-                        category_spent = {element.category_spent}
-                        removeFN = {remove}/>
-                )
-            })}
+            
+            <h1
+                id='cb-text'>[Total money]
+                </h1>
+            <div id='cb-categories'>
+                {props.category.map((element, index)=>{
+                    return(
+                        <div>
+                        <div
+                            onClick={()=>{remove(element.category_id)}}
+                            id='cb-doll-cat'
+                            key={index}>
+                            <h1>{element.category_name}</h1>
+                            <h1>${element.category_value}</h1>
+                            <div 
+                                id='cb-temp-circ'
+                                onClick={()=>{toggleShowMore(true)}}/>
+                            
+                        </div>
+                        {showMore ?
+                            <div id='cb-doll-cat-extra'>
+                                Edit
+                                Delete
+                            </div>
+                            : null}</div>
+                    )
+                })}
+                </div>
             {form ?
                     <div id='cb-inputs'>
                         <span> Category </span>

@@ -13,7 +13,7 @@ const Login = (props) => {
             .post('/api/login', {email, password})
             .then((res) => {
                 props.getUser(res.data)
-                props.history.push('/budget');
+                props.history.push('/create-budget');
             })
             .catch(() => console.log('rip'))
     }
@@ -49,6 +49,7 @@ const Login = (props) => {
                 className='auth-button'
                 onClick={login}>
                 Login</button>
+            <Link to='/Register'>New to liquidbudget? Sign up.</Link>
         </div>
     )
 }

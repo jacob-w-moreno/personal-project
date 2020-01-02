@@ -1,14 +1,29 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getCategory} from '../redux/reducer';
-import * as d3 from d3;
+import PieChart from './PieChart';
+import axios from 'axios';
 
 const Budget = (props) => {
-    const[budget] = useState(false);
+    
+    let data = props.category.map(el => el.category_value)
+    
+    useEffect(() => {
+        getCategory()
+        console.log(props.category)}, [])
+    const getCategory = () => {
+        axios
+            .get('/api/category')
+            .then((res) => {
+                props.getCategory(res.data)
+            })
+            .catch(() => console.log('did not get categories'))
+    }
+
     return (
         <div>
-            {budget ?
+            {/* {budget ?
             null : 
             <div
                 id='budget-landing'>
@@ -19,7 +34,12 @@ const Budget = (props) => {
                         <p id='budget-create'>Create New Budget</p>
                     </div>
                 </Link>
-            </div>}
+            </div>} */}
+                <PieChart
+                    data = {data}></PieChart>
+                <Link to='/create-budget'>
+                    <p>make a budget</p>
+                </Link>
         </div>
     )
 }

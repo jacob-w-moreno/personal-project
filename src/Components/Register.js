@@ -34,7 +34,7 @@ const Register = (props) => {
                 <input
                     className='auth-input'
                     maxLength='100'
-                    placeholder='Enter Email'
+                    placeholder='Email'
                     value={email}
                     onChange={(event) =>{
                         updateEmail(event.target.value)
@@ -45,7 +45,7 @@ const Register = (props) => {
                     className='auth-input'
                     type='password'
                     maxLength='30'
-                    placeholder='Enter Password'
+                    placeholder='Password'
                     value={password}
                     onChange={(event)=>{
                         updatePassword(event.target.value)

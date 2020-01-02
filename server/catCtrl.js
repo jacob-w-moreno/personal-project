@@ -9,5 +9,12 @@ module.exports = {
         const db = req.app.get('db');
         let cats = await db.get_cat_doll();
         res.status(200).send(cats)
+    },
+    deleteCat: async(req, res) => {
+        const {id} = req.params;
+        console.log(req.params);
+        const db = req.app.get('db');
+        db.delete_cat(id);
+        res.sendStatus(200)
     }
 }

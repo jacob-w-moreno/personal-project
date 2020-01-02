@@ -26,6 +26,7 @@ const Header = (props) => {
             <h1
                 id='header-username'>
                 {props.user.users_username}</h1>
+            <span id='header-plus'>+</span>
         </div>
     )
 }
