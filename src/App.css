@@ -11,6 +11,15 @@
     font-family: raleway;
 }
 
+/* ===== ===== TEMP ===== ===== */
+#temp-button{
+    position: fixed;
+    top: 70px;
+    right: 10px;
+    color: white;
+    font-size: 50px;
+}
+
 /* ===== ===== CLASSES ===== ===== */
 .auth-button{
     height: 50px;
@@ -82,15 +91,37 @@
     border-radius: 10px;
     font-size: 20px;
 }
-.cb-form-button{
-    height: 35px;
-    width: 175px;
-    background: none;
-    border: 2px solid black;
-    border-radius: 5px;
-    font-size: 20px;
+.form-title{
+    color: #ccc;
+    text-align: center;
 }
+.form-input{
+    margin: 3px 0px 25px 0px;
+    padding-left: 10px;
 
+    height: 30px;
+    border-radius: 7px;
+    border: 1px solid #ccc;
+    background: none;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+.form-main{
+    width: calc(100vw - 20px);
+    
+    margin: 0px auto;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 20px 0px;
+
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    color: white;
+    text-align: left;
+}
 /* ===== ===== LANDING ===== ===== */
 #landing-main{
     padding-top: 15px;
@@ -179,7 +210,7 @@
     right: 20px;
 }
 
-/* ===== ===== REGISTER ===== ===== */
+/* ===== ===== ===== REGISTER ===== ===== ===== */
 #register-names{
     width: 100%;
     display: flex;
@@ -192,7 +223,7 @@
     color: white;
 }
 
-/* ===== ===== BUDGET ===== ===== */
+/* ===== ===== ===== BUDGET ===== ===== ===== */
 #budget-landing{
     margin-top: 50px;
 
@@ -212,66 +243,53 @@
     transform: translateX(-50%);
 }
 
-/* ===== ===== CREATE BUDGET ===== ===== */
+/* ===== ===== ===== CREATE BUDGET ===== ===== ===== */
 #cb-main{
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+#cb-menu{
+    display: flex;
+    justify-content: space-between;
+
+    width: 100vw;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+    color: #ccc;
+}
+#cb-list{
+    margin: 10px auto;
+    padding-top: 10px;
+    width: calc(100vw - 20px);
+    max-height: 300px;
+    overflow: scroll;
+    border-top: 1px solid #ccc;
 }
 #cb-text{
     margin-top: 20px;
     color: white;
     font-size: 25px;
 }
-#cb-inputs{
-    width: 100vw;
-    height: calc(100vh - 70px);
-    background: #757575;
-    
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding: 20px 0px;
-    position: fixed;
-    bottom: 0px;
-
-    display: flex;
-    flex-direction: column;
-    font-size: 20px;
-    color: white;
-}
 #cb-add-new{
     margin: 10px auto;
-    padding-left: 10px;
     box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
 
     height: 40px;
     width: calc(100vw - 20px);
     background: none;
-    border: 2px solid black;
-    border-radius: 5px;
     font-size: 20px;
+    color: #ccc;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 
     display: flex;
     text-align: left;
     align-items: center;
-}
-#cb-form-buttons{
-    margin: 20px 0px;
-    padding: 0px 20px;
-    box-sizing: border-box;
-    width: 100vw;
-    display: flex;
-    justify-content: space-between;
-}
-#cb-keyboard{
-    height: 270px;
-    width: 100vw;
-    background-image: url('https://i.stack.imgur.com/sxJEn.png');
-    background-size: cover;
-
-    position: fixed;
-    bottom: 0px;
-    margin: 0 auto;
 }
 #cb-categories{
     margin-top: 30px;
@@ -298,7 +316,7 @@
     align-items: center;
     justify-content: center;
 }
-/* ===== ===== CATEGORY ===== ===== */
+/* ===== ===== ===== CATEGORY ===== ===== ===== */
 #cat-main{
     margin: 8px auto;
     padding: 8px 15px;
@@ -312,6 +330,7 @@
     background: white;
     width: calc(100vw - 20px);
 }
+
 #cat-info{
     display: flex;
     justify-content: space-between;
@@ -348,4 +367,50 @@
     display: flex;
     justify-content: space-around;
     margin-bottom: 5px;
+}
+
+/* ===== ===== ===== CREATE CATEGORY ===== ===== ===== */
+#cc-form-buttons{
+    margin: 3px 0px 25px 0px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+.form-type-button{
+    height: 35px;
+    width: 50%;
+    background: none;
+    /* border-radius: 5px; */
+    border: 1px solid #ccc;
+
+    color: #ccc;
+    font-size: 20px;
+}
+.form-add-button{
+    margin: 8px auto;
+
+    height: 35px;
+    width: calc(100vw - 20px);
+    background: #ff9801;
+    border: none;
+    border-radius: 5px;
+
+    color: white;
+    font-size: 20px;
+}
+#cc-keyboard{
+    height: 270px;
+    width: 100vw;
+    background-image: url('https://i.stack.imgur.com/sxJEn.png');
+    background-size: cover;
+
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+/* ===== ===== ===== CREATE TRANSACTION ===== ===== ===== */
+#ct-main{
+    display: flex;
+    flex-direction: column;
 }

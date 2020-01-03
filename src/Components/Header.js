@@ -4,6 +4,8 @@ import {Link} from 'react-router-dom';
 import {getUser} from '../redux/reducer';
 import axios from 'axios';
 
+// Have this not be self-closing so you can render it within each component,  passing in new info every time. (look into render props!!)
+
 const Header = (props) => {
     
     const getUser = () => {

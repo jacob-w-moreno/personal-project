@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 const Category = (props) => {
     const [showMore, toggleShowMore] = useState(false);
-
+// look into inline styling and adding ternaries inside of the div tag!!
     return(
         <div 
             id='cat-main'
