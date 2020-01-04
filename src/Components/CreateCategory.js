@@ -49,6 +49,7 @@ const CreateCategory = (props) => {
                 onClick={()=>props.history.push('/create-budget')}>
                 Cancel</button>
             <div id='cc-keyboard'/>
+            {/* <button onClick={(()=>console.log(session.user))}>Click</button> */}
         </div>
     )
 }

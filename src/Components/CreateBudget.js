@@ -9,8 +9,7 @@ const CreateBudget = (props) => {
     const[showMore, toggleShowMore] = useState(false);
 
     useEffect(() => {
-        getCategory()
-        console.log(props)}, [])
+        getCategory()}, [])
 
     const getCategory = () => {
         axios
@@ -32,21 +31,30 @@ const CreateBudget = (props) => {
     }
 
     return(
-        <div id='cb-main'>
-            <p id='temp-total'>$4,900<br/>remaining</p>
-            {/* {props.category
-                .map((element, index) => {element.category_value, element.category_spent})
-                .reduce((acc, curr) => acc + curr)} */}
-            <Link to='create-transaction'><button 
-                id='temp-button'
-                onClick={null}>+</button></Link>
-                <div id='cb-menu'>
-                    <span>Name</span>
-                    <span>Allotted</span>
-                    <span>Spent</span>
-                    <span>Balance</span>
+        <div id='budget-main'>
+            <div className='budget-totals'>
+                <div className='budget-cat-total'>
+                    <span>$</span>
+                    <div className='line'/>
+                    <span>$2,700</span>
                 </div>
-            <div id='cb-list'>
+                {/* Add all category totals and put them below */}
+                <div className='circle'>$3,100</div>
+                <div className='budget-cat-total'>
+                    <span>%</span>
+                    <div className='line'/>
+                    <span>$400</span>
+                </div>
+            </div>
+            <div className='budget-header'>
+                Categories
+            </div>
+            <div className='budget-white'>
+                <span>Allocated</span>
+                <span>Name</span>
+                <span>Balance</span>
+            </div>
+            <div id='budget-list'>
                 {props.category.map((element, index) => {
                     return(
                         <Category
@@ -60,11 +68,23 @@ const CreateBudget = (props) => {
                     )
                 })}
             </div>
+            <div id='budget-buttons'>
                 <button 
+                    className='budget-button'
+                    onClick={(()=> props.history.push('/create-transaction'))}>
+                    Add Transaction</button>
+                <button 
+                    className='budget-button'
+                    >
+                    Add Income</button>
+                <button onClick={(()=> props.history.push('/create-category'))}/>
+            </div>
+            
+            {/* <button 
                     id='cb-add-new'
                     onClick={(()=> props.history.push('/create-category'))}>
                     Add Category
-                </button>
+                </button> */}
             <Link to='budget'>Cancel</Link>
         </div>
     )

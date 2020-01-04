@@ -9,10 +9,8 @@ const Category = (props) => {
             onClick={()=>{toggleShowMore(showMore === true? false:true)}}>
             <div id='cat-info'>
                 <h1 id ='cat-name'>{props.category_name}</h1>
-                <div id='cat-math'>
-                <h1 className = 'cat-gray'>${props.category_value} - ${props.category_spent} =</h1>
-                <h1 id ='cat-remaining'>${props.category_value - props.category_spent}</h1>
-                </div>
+                <h1 className = 'cat-gray'>${props.category_value}</h1>
+                <h1 id ='cat-balance'>${props.category_value - props.category_spent}</h1>
             </div>
             {showMore ?
                 <div id='cat-extra'>

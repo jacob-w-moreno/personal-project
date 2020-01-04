@@ -22,16 +22,18 @@ massive(CONNECTION_STRING).then(db=>{
 })
 
 // ===== ===== AUTH ===== =====
+
 app.post('/api/register', authCtrl.register);
 app.post('/api/login', authCtrl.login);
 app.post('/api/logout', authCtrl.logout);
 app.get('/api/user', authCtrl.checkUser)
-// ===== ===== ===== ===== ====
 
 // ===== ===== CATEGORY =====
+
 app.post('/api/category', catCtrl.addCat)
 app.get('/api/category', catCtrl.getCat)
 app.delete('/api/category/:id', catCtrl.deleteCat)
+
 // ===== ===== ===== ===== ====
 
 const port = SERVER_PORT;

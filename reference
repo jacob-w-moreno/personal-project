@@ -1,0 +1,4 @@
+TO DO:
+
+* Edit all database functions so they explicitly define who the user/category is.
+* Remember: You have to explicitly define reference keys when you make them. Join tables are strictly for pulling the data out.

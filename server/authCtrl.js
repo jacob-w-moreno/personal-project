@@ -6,14 +6,14 @@ module.exports = {
         const {session} = req;
         const db = req.app.get('db');
 
-        let user = await db.check_user(email);
+        let user = await db.user_get(email);
         user = user[0];
         if(user){
             return res.status(400).send('A user with that email already exists. Please log in.')
         }
         const salt = bcrypt .genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        let newUser = await db.register_user({email, hash});
+        let newUser = await db.user_register({email, hash});
         newUser = newUser[0];
         session.user = newUser;
         res.status(200).send(session.user);
@@ -23,7 +23,7 @@ module.exports = {
         const {session} = req;
         const db = req.app.get('db');
 
-        let user = await db.check_user(email);
+        let user = await db.user_get(email);
         user = user[0];
         if(!user){
             return res.status(400).send('Email not found');
@@ -39,6 +39,7 @@ module.exports = {
     },
     checkUser: (req, res) => {
         if(req.session.user){
+            console.log(req.session.user)
             res.status(200).send(req.session.user);
         } else {
             res.status(400).send('User not found');
