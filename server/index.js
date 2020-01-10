@@ -5,6 +5,7 @@ const express = require('express'),
       gradient = require('gradient-string'),
       authCtrl = require('./authCtrl'),
       catCtrl = require('./catCtrl'),
+      transCtrl = require('./transCtrl'),
       {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env,
       app = express();
 
@@ -28,13 +29,18 @@ app.post('/api/login', authCtrl.login);
 app.post('/api/logout', authCtrl.logout);
 app.get('/api/user', authCtrl.checkUser)
 
-// ===== ===== CATEGORY =====
+// ===== ===== CATEGORY ===== =====
 
 app.post('/api/category', catCtrl.addCat)
 app.get('/api/category', catCtrl.getCat)
 app.delete('/api/category/:id', catCtrl.deleteCat)
 
-// ===== ===== ===== ===== ====
+// ===== ===== TRANSACTIONS ===== =====
+
+app.post('/api/transaction', transCtrl.addTrans)
+app.get('/api/transaction', transCtrl.getTrans)
+
+// ===== ===== ===== ===== ===== =====
 
 const port = SERVER_PORT;
 app.listen(port, () => console.log(gradient.fruit(`port: ${port}`)));

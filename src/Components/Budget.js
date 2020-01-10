@@ -2,16 +2,20 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getCategory} from '../redux/reducer';
-import PieChart from './PieChart';
+import {getTransactions} from '../redux/reducer';
+import Categories from './Categories';
 import axios from 'axios';
 
 const Budget = (props) => {
-    
-    let data = props.category.map(el => el.category_value)
-    
+    const[showMore, toggleShowMore] = useState(false);
+    // const[userId, setUserId] = useState(null);
+
     useEffect(() => {
-        getCategory()
-        console.log(props.category)}, [])
+        getCategory();
+        getTransactions()}, [])
+
+        console.log(props.category);
+
     const getCategory = () => {
         axios
             .get('/api/category')
@@ -20,26 +24,78 @@ const Budget = (props) => {
             })
             .catch(() => console.log('did not get categories'))
     }
+    const getTransactions = () => {
+        axios
+            .get('/api/transaction')
+            .then((res) => {
+                props.getTransactions(res.data)
+            })
+    }
 
-    return (
-        <div>
-            {/* {budget ?
-            null : 
-            <div
-                id='budget-landing'>
-                You don't have a budget yet. <br/>Let's make one!
-                <Link to='/create-budget'>
-                    <div
-                        id='budget-default'>
-                        <p id='budget-create'>Create New Budget</p>
-                    </div>
-                </Link>
-            </div>} */}
-                <PieChart
-                    data = {data}></PieChart>
-                <Link to='/create-budget'>
-                    <p>make a budget</p>
-                </Link>
+    const remove = id => {
+        axios
+            .delete(`/api/category/${id}`)
+            .then(() => {
+                getCategory()
+            })
+            .catch(() => console.log('cannot delete'))
+    }
+
+    let total = props.category.map(element =>
+        element.category_balance
+    )
+    .reduce((acc, curr)=> acc+curr, 0);
+
+    let dollarTotal = props.category.filter(element => element.category_type === "Dollar")
+    .map(element =>
+        element.category_balance
+    )
+    .reduce((acc, curr)=> acc+curr, 0);
+
+    let percentageTotal = props.category.filter(element => element.category_type === "Percentage")
+    .map(element =>
+        element.category_balance
+    )
+    .reduce((acc, curr)=> acc+curr, 0);
+
+    return(
+        <div id='budget-main'>
+            <div className='budget-totals'>
+                <div className='budget-cat-total'>
+                    <span>$</span>
+                    <div className='line'/>
+                    <span>${Math.trunc(dollarTotal)}</span>
+                </div>
+                {/* Add all category totals and put them below */}
+                <div className='circle'>${Math.trunc(total)}</div>
+                <div className='budget-cat-total'>
+                    <span>%</span>
+                    <div className='line'/>
+                    <span>${Math.trunc(percentageTotal)}</span>
+                </div>
+            </div>
+            <div className='budget-header'>
+                Categories
+            </div>
+            <div className='budget-white'>
+                <span>Allocated</span>
+                <span>Name</span>
+                <span>Balance</span>
+            </div>
+            <div id='budget-list'>
+                {props.category.map((element, index) => {
+                    return(
+                        <Categories
+                            key = {index}
+                            category_id = {element.category_id}
+                            category_name = {element.category_name}
+                            category_allocated = {element.category_allocated}
+                            category_type = {element.category_type}
+                            category_balance = {element.category_balance}
+                            removeFN = {remove}/>
+                    )
+                })}
+            </div>
         </div>
     )
 }
@@ -48,4 +104,4 @@ const mapStateToProps = (reduxState) => {
     return reduxState
 }
 
-export default connect(mapStateToProps, {getCategory})(Budget);
+export default connect(mapStateToProps, {getCategory, getTransactions})(Budget);

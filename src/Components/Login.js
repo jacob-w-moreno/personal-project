@@ -13,8 +13,7 @@ const Login = (props) => {
             .post('/api/login', {email, password})
             .then((res) => {
                 props.getUser(res.data)
-                props.history.push('/create-budget');
-            })
+                props.history.push('/budget');})
             .catch(() => console.log('rip'))
     }
 
@@ -32,7 +31,6 @@ const Login = (props) => {
                     value={email}
                     onChange={(event) =>{
                         updateEmail(event.target.value)
-                        console.log({email})
                     }}/>
                 <input 
                     className='auth-input'
@@ -42,7 +40,6 @@ const Login = (props) => {
                     value={password}
                     onChange={(event)=>{
                         updatePassword(event.target.value)
-                        console.log({password})
                     }}/>
             </div>
             <button

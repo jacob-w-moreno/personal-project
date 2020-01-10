@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import CurrencyInput from 'react-currency-input';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
@@ -6,6 +7,7 @@ const CreateCategory = (props) => {
     const[name, setName] = useState('');
     const[amount, setAmount] = useState(0);
     const[type, setType] = useState('Dollar');
+    const[currency, setCurrency] = useState(0);
 
     const submit = () => {
         axios
@@ -13,7 +15,7 @@ const CreateCategory = (props) => {
             .then((res) => {
                 setName('');
                 setAmount(0);
-                props.history.push('/create-budget');
+                props.history.push('/budget');
             })
             .catch(()=>console.log('did not get category'))
     }
@@ -21,14 +23,31 @@ const CreateCategory = (props) => {
         <div className='form-main'>
             <span className='form-title'> Type </span>
             <div id='form-type-buttons'>
-            <button
-                className='form-type-button'
-                onClick={()=>setType('Dollar')}>
-                $</button>
-            <button 
-                className='form-type-button'
-                onClick={()=>setType('Percentage')}>
-                %</button>
+            {type === 'Dollar' ?
+                <button
+                    className='form-type-button'
+                    id='clicked-button'
+                    onClick={()=>setType('Dollar')}>
+                    $</button>
+                : 
+                <button
+                    className='form-type-button'
+                    onClick={()=>setType('Dollar')}>
+                    $</button>
+            }    
+
+            {type === 'Dollar' ?
+                <button 
+                    className='form-type-button'
+                    onClick={()=>setType('Percentage')}>
+                    %</button>
+                : 
+                <button
+                    className='form-type-button'
+                    id='clicked-button'
+                    onClick={()=>setType('Dollar')}>
+                    %</button>
+            }
             </div>
             <span className='form-title'> Name </span>
             <input
@@ -36,20 +55,20 @@ const CreateCategory = (props) => {
                 value={name}
                 onChange={(e)=>setName(e.target.value)}/>
             <span className='form-title'> Amount </span>
-            <input
-                className='form-input'
-                value={amount}
-                onChange={(e)=>setAmount(e.target.value)}/>
+            <CurrencyInput 
+                value={amount} 
+                onChange={(e, maskedVal, floatVal)=>setAmount(maskedVal)}
+                prefix="$"
+                className='form-input'/>  
             <button
                 className='form-add-button'
                 onClick={()=>submit()}>
                 Add</button>
             <button
                 className='form-add-button'
-                onClick={()=>props.history.push('/create-budget')}>
+                onClick={()=>props.history.push('/budget')}>
                 Cancel</button>
-            <div id='cc-keyboard'/>
-            {/* <button onClick={(()=>console.log(session.user))}>Click</button> */}
+            
         </div>
     )
 }

@@ -3,11 +3,12 @@ import {Switch, Route} from 'react-router-dom';
 import Register from './Components/Register';
 import Landing from './Components/Landing';
 import Login from './Components/Login';
-import Budget from './Components/Budget';
 import Transactions from './Components/Transactions';
-import CreateBudget from './Components/CreateBudget';
+import Budget from './Components/Budget';
 import CreateCategory from './Components/CreateCategory';
 import CreateTransaction from './Components/CreateTransaction';
+import Category from './Components/Category';
+import UselessBudget from './Components/UselessBudget';
 
 export default (
     <Switch>
@@ -16,8 +17,10 @@ export default (
         <Route path = '/login' component = {Login}/>
         <Route path = '/budget' component = {Budget}/>
         <Route path = '/transactions' component = {Transactions}/>
-        <Route path = '/create-budget' component = {CreateBudget}/>
         <Route path = '/create-category' component = {CreateCategory}/>
         <Route path = '/create-transaction' component = {CreateTransaction}/>
+        {/* <Route path = '/category' component = {Category}/> */}
+        <Route path = '/pie-chart' component = {UselessBudget}/>
+        <Route path = '/category/:category_name' component = {Category}/>
     </Switch>
 )

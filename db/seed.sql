@@ -5,10 +5,13 @@ users_id serial primary key,
 users_username varchar(50) [i think]
 );
 
-create table category (
-    -- add this:
-    users_id int references users (users_id)
+create table passwords (
+    passwords_id serial primary key,
+    passwords_password varchar(250),
+    users_id int references users(users_id)
+);
 
+create table category (
 category_name varchar(30),
 category_type varchar(10),
 category_value float,

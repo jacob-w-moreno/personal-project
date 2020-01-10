@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import './App.css';
+import './AppR.css';
 import './Reset.css';
 import Header from './Components/Header';
 import routes from './routes';

@@ -3,16 +3,35 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getCategory} from '../redux/reducer';
 import axios from 'axios';
+import CurrencyInput from 'react-currency-input';
 
 const CreateTransaction = (props) => {
-    const [category, setCategory] = useState('Choose a Category');
     const [showMore, toggleShowMore] = useState(false);
+    const [catId, setCategory_id] = useState(null);
     const [name, setName] = useState('');
-    const [price, setPrice] = useState(0);
+    const [amount, setAmount] = useState(0);
+    const [category, setCategory] = useState('Choose a Category');
+    const [type] = useState('outgo');
+    const [categoryBalance, setCategoryBalance] = useState(0);
+    const [newBalance, setNewBalance] = useState(categoryBalance);
 
     useEffect(() => {
-        getCategory()
-        console.log(props)}, [])
+        getCategory()}, [])
+
+    useEffect(() => {
+        setNewBalance((categoryBalance - amount).toFixed(2));
+        if(amount > categoryBalance){
+            setAmount(categoryBalance);
+        }
+    })
+    const submit = () => {
+        axios
+            .post('/api/transaction', {catId,name,amount,category,type,newBalance})
+            .then(() => {
+                props.history.push('/budget');
+            })
+            .catch(()=>console.log('could not add transaction'))
+    }
 
     return(
         <div className='form-main'>
@@ -24,18 +43,27 @@ const CreateTransaction = (props) => {
                         onClick={()=> toggleShowMore(toggleShowMore ? false : true)}>
                         {props.category.map((element, index) => {
                             return (
-                                <div key={index}
+                                <div 
+                                    key={index}
                                     id='ct-dropdown-category'
-                                    onClick={()=> setCategory(element.category_name)}>
+                                    onClick={()=> {
+                                        setCategory(element.category_name);
+                                        setCategory_id(element.category_id);
+                                        setCategoryBalance(element.category_balance);
+                                        setNewBalance(categoryBalance - amount);
+                                    }}>
                                     {element.category_name}
                                 </div>)})}
                     </div>
                 :
-                    <div id='ct-chosen-cat' onClick={()=> toggleShowMore(true)}>
-                        {category}
+                    <div 
+                        id='ct-chosen-cat'
+                        onClick={()=> toggleShowMore(true)}>
+                        <span>{category}</span>
+                        {category === 'Choose a Category' ?
+                            null:<span>${categoryBalance}</span>}
                     </div>}
             </div>
-            {/* <input className='form-input'/> */}
             <span 
                 className='form-title'>
                 Name</span>
@@ -46,17 +74,23 @@ const CreateTransaction = (props) => {
                 />
             <span 
                 className='form-title'>
-                Price</span>
-            <input 
-                className='form-input'
-                value={price}
-                onChange={(e)=>setPrice(e.target.value)}
-                />
+                Amount</span>
+                <CurrencyInput 
+                value={amount} 
+                onChange={(e, maskedVal, floatVal)=>{
+                    setAmount(maskedVal);
+                    setNewBalance((categoryBalance - amount).toFixed(2));
+                }}
+                prefix="$"
+                className='form-input'/>
             <button className='form-add-button'
-                onClick={()=>console.log(name, price)}>Add</button>
+                onClick={()=>submit()}>
+                Add</button>
             <button
                 className='form-add-button'
-                onClick={()=>props.history.push('/create-budget')}>
+                onClick={()=>props.history.push('/budget')}
+                
+                >
                 Cancel</button>
         </div>
     )

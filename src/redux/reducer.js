@@ -1,10 +1,12 @@
 const initialState = {
     user: {},
-    category: []
+    category: [],
+    transactions: []
 }
 
 const GET_USER = 'GET_USER';
 const GET_CATEGORY = 'GET_CATEGORY';
+const GET_TRANSACTIONS = 'GET_TRANSACTIONS';
 
 export function getUser(userObj){
     return {
@@ -20,6 +22,13 @@ export function getCategory(catObj){
     }
 }
 
+export function getTransactions(transObj){
+    return{
+        type: GET_TRANSACTIONS,
+        payload: transObj
+    }
+}
+
 export default function reducer(state = initialState, action){
     const{type, payload} = action;
     switch(type){
@@ -27,6 +36,8 @@ export default function reducer(state = initialState, action){
             return {...state, user: payload};
         case GET_CATEGORY:
             return{...state, category: payload};
+        case GET_TRANSACTIONS:
+            return{...state, transactions: payload}
         default:
             return state;
     }

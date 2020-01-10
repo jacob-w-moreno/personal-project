@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 
 const Landing = (props) => {
@@ -6,7 +6,7 @@ const Landing = (props) => {
         <div id='landing-main'>
             <header id='landing-header'>
                 <div>
-                    <span id='landing-liquid'>liquid</span>
+                    <span id='landing-dyna'>dyna</span>
                     <span id='landing-budget'>budget</span>
                 </div>
                 <Link to='/login'>

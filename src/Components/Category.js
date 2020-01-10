@@ -1,27 +1,55 @@
-import React, {useState} from 'react';
+import React from 'react';
+import {connect} from 'react-redux';
+import Transactions from './Transactions';
 
 const Category = (props) => {
-    const [showMore, toggleShowMore] = useState(false);
-// look into inline styling and adding ternaries inside of the div tag!!
+
+    let current = props.category.filter(el => (
+        el.category_name===props.match.params.category_name
+    ))
+
     return(
-        <div 
-            id='cat-main'
-            onClick={()=>{toggleShowMore(showMore === true? false:true)}}>
-            <div id='cat-info'>
-                <h1 id ='cat-name'>{props.category_name}</h1>
-                <h1 className = 'cat-gray'>${props.category_value}</h1>
-                <h1 id ='cat-balance'>${props.category_value - props.category_spent}</h1>
-            </div>
-            {showMore ?
-                <div id='cat-extra'>
-                    Edit
-                    <p
-                        onClick={()=>{props.removeFN(props.category_id)}}>
-                        Delete
-                        </p>
+        <div id='budget-main'>
+            <div className='budget-totals'>
+                <div className='budget-cat-total'>
+                    <span>Allocated</span>
+                    <div className='line'/>
+                    ${current[0] && current[0].category_allocated}
                 </div>
-                : null}
+                <div className='circle'>{current[0] && current[0].category_name}</div>
+                <div className='budget-cat-total'>
+                    <span>Remaining</span>
+                    <div className='line'/>
+                    ${current[0] && current[0].category_balance}
+                </div>
+            </div>
+            <div className='budget-header'>
+                Transactions
+            </div>
+            <div className='budget-white'>
+                <span>Date</span>
+                <span>Name</span>
+                <span>Price</span>
+            </div>
+            <div id='budget-list'>
+                {props.transactions
+                    .filter(element => element.category_id === current[0].category_id)
+                    .map((element, index) => {
+                        return(
+                            <Transactions
+                                key = {index}
+                                transaction_name = {element.transaction_name}
+                                transaction_amount = {element.transaction_amount}/>
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }
-export default Category;
+
+const mapStateToProps = (reduxState) => {
+    return reduxState
+}
+
+export default connect(mapStateToProps)(Category);
