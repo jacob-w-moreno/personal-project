@@ -69,16 +69,16 @@ const Budget = (props) => {
 
     return(
         <div className='budget-main'>
-            <div className='budget-totals'>
+            <div className='budget-totals' onClick={()=>toggleShowMore(showMore ? false : true)}>
                 <div className='budget-cat-total'>
-                    <span>${Math.trunc(dollarBalance)}</span>
+                    <span>${showMore ? dollarBalance.toFixed(2) : Math.trunc(dollarBalance)}</span>
                     <div className='line'/>
-                    <span>${dollarTotal}</span>
+                    <span>${showMore ? dollarTotal.toFixed(2) : Math.trunc(dollarTotal)}</span>
                 </div>
                 {/* Add all category totals and put them below */}
-                <div className='circle'>${Math.trunc(total)}</div>
+                <div className='circle'>${showMore ? total.toFixed(2) : Math.trunc(total)}</div>
                 <div className='budget-cat-total'>
-                    <span>${Math.trunc(percentageBalance)}</span>
+                    <span>${showMore ? percentageBalance.toFixed(2) : Math.trunc(percentageBalance)}</span>
                     <div className='line'/>
                     <span>%{percentageTotal}</span>
                 </div>
@@ -92,7 +92,7 @@ const Budget = (props) => {
                 <span>Balance</span>
             </div>
             <div id='budget-list'>
-                {props.category.map((element, index) => {
+                {props.category.sort().map((element, index) => {
                     return(
                         element.category_type === 'Unallocated' && element.category_balance === 0 
                             ? null:

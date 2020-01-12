@@ -44,11 +44,11 @@ const Login = (props) => {
                     onChange={(event)=>{
                         updatePassword(event.target.value)
                     }}/>
-            </div>
             <button
                 className='auth-button'
                 onClick={login}>
                 Login</button>
+            </div>
             <Link to='/' id='register-login'>New to supplebudget? Sign up.</Link>
         </div>
     )

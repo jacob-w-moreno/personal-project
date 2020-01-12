@@ -60,8 +60,10 @@ const AddIncome = (props) => {
       
     let distributePercent = income => {
         let percent = props.category.filter(element => element.category_type === 'Percentage');
+
         let oldTotals = percent.map((el) => +el.category_balance)
         .reduce((acc, curr) => acc + curr, 0);
+
         console.log(`old totals: ${oldTotals}`)
         console.log(`income: ${income}`);
         for (let i=0; i<percent.length; i++) {
@@ -75,7 +77,8 @@ const AddIncome = (props) => {
         .reduce((acc, curr) => acc + curr, 0);
         console.log(`new totals: ${newTotals}`)
         
-        if (newTotals !== oldTotals + income) {
+        if (+newTotals.toFixed(2) !== +oldTotals + +income) {
+            console.log('rounding error: solved')
         let difference = +(income - newTotals).toFixed(2);
         percent[0].category_balance = +(percent[0].category_balance + +difference);
         }

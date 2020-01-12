@@ -54,7 +54,6 @@ const Landing = (props) => {
                     }}
                     />
                 </div>
-
             <div id='landing-buttons'>
                 <Link to='/register'>
                     <button 
@@ -62,6 +61,7 @@ const Landing = (props) => {
                         Sign Up
                         </button>
                 </Link>
+
                 
                 
             </div>
