@@ -9,31 +9,30 @@ const Categories = (props) => {
 
     return(
         <div 
-            id='cat-main'
+            className='cat-main'
             // onClick={()=>props.history.push(`/category`)}
             >
-            <div id='cat-info'>
-                {catInt ?
-                    <h1 
-                        className = 'cat-gray'
-                        onClick = {() => {toggleCatInt(false)}}>${props.category_allocated}</h1>
-                    : <h1 
-                        className ='cat-gray'
-                        onClick = {() => {toggleCatInt(true)}}>${Math.trunc(props.category_allocated)}</h1>
-                }
+            <div className='cat-info'>
+                <h1 className = 'cat-gray'
+                    onClick = {() => {props.setCatPennyFN(props.catPenny ? false : true)}}>
+                    {props.category_type === 'Percentage' ?
+                        props.catPenny ? 
+                            '%'+props.category_allocated 
+                            : '%'+Math.trunc(props.category_allocated)
+                        : props.catPenny ? 
+                            '$'+props.category_allocated 
+                            : '$'+Math.trunc(props.category_allocated)
+                    }
+                </h1>
 
                 <Link to={`category/${props.category_name}`}>
-                <h1 id ={
-                    props.category_type === 'Percentage' ? 'cat-name-2':'cat-name'}>{props.category_name}</h1></Link>
-
-                {catInt ?
-                    <h1 
-                        id ='cat-balance'
-                        onClick = {() => {toggleCatInt(false)}}>${props.category_balance}</h1>
-                    : <h1 
-                        id ='cat-balance'
-                        onClick = {() => {toggleCatInt(true)}}>${Math.trunc(props.category_balance)}</h1>
-                }
+                <h1 className ='cat-name'>{props.category_name}</h1></Link>
+                <h1 className ='cat-balance'
+                    onClick = {() => {props.setCatPennyFN(props.catPenny ? false : true)}}>
+                    {props.catPenny ?
+                        '$'+(props.category_balance)
+                        : '$'+Math.trunc(props.category_balance)
+                    }</h1>
             </div>
         </div>
     )

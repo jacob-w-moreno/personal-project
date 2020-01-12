@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {getUser} from '../redux/reducer';
+import {getUser, logout} from '../redux/reducer';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
 
@@ -21,10 +21,11 @@ const Header = (props) => {
     }
 
     const logout = () => {
+        props.history.push('/');
         axios
             .post('/api/logout')
             .then(() => {
-                props.history.push('/');
+                props.logout();
             })
     }
     let arr = props.history.location.pathname.split('/')
@@ -48,18 +49,20 @@ const Header = (props) => {
                                 toggleExtra(false)}}/>
 
                         {add ?
-                            <div id='header-extra'>
+                            <div className='header-extra' id='add-buttons'>
+                                <Link to='create-category'>
+                                    <button className='ham-butt-add' 
+                                    onClick={()=>toggleAdd(false)}>
+                                    Add Category</button></Link> 
+                                <Link to='add-income'>
+                                    <button className='ham-butt-add' 
+                                    onClick={()=>toggleAdd(false)}>
+                                    Add Income</button></Link>    
                                 <Link to='create-transaction'>
-                                <button className='hamburger-button'
+                                    <button className='ham-butt-add' id='hamburger-end'
                                     onClick={()=>toggleAdd(false)}>
                                     Add Expense</button></Link> 
-                                <Link to='create-category'>
-                                    <button className='hamburger-button'
-                                        onClick={()=>toggleAdd(false)}>
-                                        Add Category</button></Link> 
-                                <button className='hamburger-button' id='hamburger-end'
-                                    onClick={()=>toggleAdd(false)}>
-                                    Add Income</button>
+                                <div id='white-space' onClick={()=>{toggleAdd(false); toggleExtra(false)}}/>
                             </div>
                             :null}
                     </div> : null}
@@ -72,10 +75,38 @@ const Header = (props) => {
                         <div className='icon' id='add'/>
                     </div> : null}
                 
-                {props.history.location.pathname === '/pie-chart' ?
+                {props.history.location.pathname === '/pie-chart'?
                     <div className='header-main'>
                         <Link to='budget'><div className='icon' id='back'/></Link>
                         <h1 className = 'header-heading'>PIE CHART</h1>
+                        <div className='icon'/>
+                    </div> : null}
+
+                {props.history.location.pathname === '/history'?
+                    <div className='header-main'>
+                        <Link to='budget'><div className='icon' id='back'/></Link>
+                        <h1 className = 'header-heading'>HISTORY</h1>
+                        <div className='icon'/>
+                    </div> : null}
+
+                {props.history.location.pathname === '/add-income'?
+                    <div className='header-main'>
+                        <Link to='budget'><div className='icon' id='back'/></Link>
+                        <h1 className = 'header-heading'>ADD INCOME</h1>
+                        <div className='icon'/>
+                    </div> : null}
+
+                {props.history.location.pathname === '/create-category'?
+                    <div className='header-main'>
+                        <Link to='budget'><div className='icon' id='back'/></Link>
+                        <h1 className = 'header-heading'>NEW CATEGORY</h1>
+                        <div className='icon'/>
+                    </div> : null}
+
+                {props.history.location.pathname === '/create-transaction'?
+                    <div className='header-main'>
+                        <Link to='budget'><div className='icon' id='back'/></Link>
+                        <h1 className = 'header-heading'>ADD TRANSACTION</h1>
                         <div className='icon'/>
                     </div> : null}
 
@@ -87,15 +118,17 @@ const Header = (props) => {
             </div> */}
 
             {extra ?
-                <div id='header-extra'>
-                    <Link to='pie-chart'><button className='hamburger-button'
-                        onClick={()=>{toggleExtra(false)}}>
-                        Pie Chart</button></Link>
-                    <button className='hamburger-button'>
+                <div className='header-extra'>
+                <button className='hamburger-button'
+                        onClick={()=>{toggleExtra(false);props.history.push('/pie-chart')}}>
+                        Pie Chart</button>
+                    <button className='hamburger-button'
+                        onClick={()=>{toggleExtra(false);props.history.push('/history')}}>
                         Transaction History</button>
                     <button className='hamburger-button' id='hamburger-end'
-                        onClick={logout}>
+                        onClick={()=>{logout(); props.logout();}}>
                         Log Out</button>
+                    <div id='white-space' onClick={()=>{toggleAdd(false); toggleExtra(false)}}/>
                 </div>
                 : null
             }
@@ -108,4 +141,4 @@ const mapStateToProps = (reduxState) => {
     return reduxState
 }
 
-export default connect(mapStateToProps, {getUser})(withRouter(Header));
+export default connect(mapStateToProps, {getUser, logout})(withRouter(Header));

@@ -61,6 +61,9 @@
     #header-plus{
         font-size: 35px;
     }
+    #budget-list{
+        max-height: calc(100vh - 100px);
+    }
     .budget-totals{
         /* border: 1px solid white; */
         padding: 15px 0px;

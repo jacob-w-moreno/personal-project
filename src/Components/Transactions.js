@@ -1,18 +1,22 @@
-import React from 'react';
+ import React from 'react';
 
 const Transactions = (props) => {
+    console.log(props)
     return (
-        <div id='cat-main'>
-            <div id='cat-info'>
+        <div className='cat-main' >
+            <div className='cat-info' >
                 <div className='cat-gray'>
-                    —
+                    -
                 </div>
-                <div id='cat-name'>
+                <div className='cat-name' id={
+            props.transaction_type ==='income' ?
+            'trans-income':'trans-outgo'}>
                     {props.transaction_name}
                 </div>
-                <div id='cat-balance'>
-                    -{props.transaction_amount}
-                </div>
+                {props.transaction_type === 'income' ?
+                    <div className='cat-balance'>+{props.transaction_amount}</div>
+                    :
+                    <div className='cat-balance'>-{props.transaction_amount}</div>}
             </div>
         </div>
     )

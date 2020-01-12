@@ -10,18 +10,21 @@ const Login = (props) => {
 
     const login = () => {
         axios
-            .post('/api/login', {email, password})
+            .post ('/api/login', {email, password})
             .then((res) => {
-                props.getUser(res.data)
+                props.getUser(res.data);
                 props.history.push('/budget');})
             .catch(() => console.log('rip'))
     }
 
     return (
         <div className='auth-secondary'>
-            <Link to='/'><button 
-                className='auth-cancel'>
-                Cancel</button></Link>
+            <header id='landing-header'>
+                <div>
+                    <span id='landing-supple'>supple</span>
+                    <span id='landing-budget'>budget</span>
+                </div>
+            </header>
             <p className='auth-secondary-text'>Welcome back!</p>
             <div className='auth-inputs'>
                 <input
@@ -46,7 +49,7 @@ const Login = (props) => {
                 className='auth-button'
                 onClick={login}>
                 Login</button>
-            <Link to='/Register'>New to liquidbudget? Sign up.</Link>
+            <Link to='/' id='register-login'>New to supplebudget? Sign up.</Link>
         </div>
     )
 }

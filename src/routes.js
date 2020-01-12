@@ -9,6 +9,8 @@ import CreateCategory from './Components/CreateCategory';
 import CreateTransaction from './Components/CreateTransaction';
 import Category from './Components/Category';
 import UselessBudget from './Components/UselessBudget';
+import AddIncome from './Components/AddIncome';
+import History from './Components/History';
 
 export default (
     <Switch>
@@ -19,8 +21,9 @@ export default (
         <Route path = '/transactions' component = {Transactions}/>
         <Route path = '/create-category' component = {CreateCategory}/>
         <Route path = '/create-transaction' component = {CreateTransaction}/>
-        {/* <Route path = '/category' component = {Category}/> */}
+        <Route path = '/add-income' component = {AddIncome}/>
         <Route path = '/pie-chart' component = {UselessBudget}/>
         <Route path = '/category/:category_name' component = {Category}/>
+        <Route path = '/history' component = {History}/>
     </Switch>
 )

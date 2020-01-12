@@ -8,13 +8,12 @@ import axios from 'axios';
 
 const Budget = (props) => {
     const[showMore, toggleShowMore] = useState(false);
+    const [catPenny, setCatPenny] = useState(false);
     // const[userId, setUserId] = useState(null);
 
     useEffect(() => {
         getCategory();
         getTransactions()}, [])
-
-        console.log(props.category);
 
     const getCategory = () => {
         axios
@@ -46,32 +45,42 @@ const Budget = (props) => {
     )
     .reduce((acc, curr)=> acc+curr, 0);
 
-    let dollarTotal = props.category.filter(element => element.category_type === "Dollar")
+    let dollarBalance = props.category.filter(element => element.category_type === "Dollar")
+    .map(element => element.category_balance)
+    .reduce((acc, curr)=> acc+curr, 0);
+
+    let percentageBalance = props.category.filter(element => element.category_type === "Percentage")
     .map(element =>
         element.category_balance
     )
     .reduce((acc, curr)=> acc+curr, 0);
 
-    let percentageTotal = props.category.filter(element => element.category_type === "Percentage")
-    .map(element =>
-        element.category_balance
-    )
-    .reduce((acc, curr)=> acc+curr, 0);
+    let percentageTotal = props.category
+        .filter(element => element.category_type === 'Percentage')
+        .map(element =>
+            element.category_allocated)
+        .reduce((acc, curr) => acc + curr, 0);
+
+    let dollarTotal = props.category
+        .filter(element => element.category_type === 'Dollar')
+        .map(element =>
+            element.category_allocated)
+        .reduce((acc, curr) => acc + curr, 0);
 
     return(
-        <div id='budget-main'>
+        <div className='budget-main'>
             <div className='budget-totals'>
                 <div className='budget-cat-total'>
-                    <span>$</span>
+                    <span>${Math.trunc(dollarBalance)}</span>
                     <div className='line'/>
-                    <span>${Math.trunc(dollarTotal)}</span>
+                    <span>${dollarTotal}</span>
                 </div>
                 {/* Add all category totals and put them below */}
                 <div className='circle'>${Math.trunc(total)}</div>
                 <div className='budget-cat-total'>
-                    <span>%</span>
+                    <span>${Math.trunc(percentageBalance)}</span>
                     <div className='line'/>
-                    <span>${Math.trunc(percentageTotal)}</span>
+                    <span>%{percentageTotal}</span>
                 </div>
             </div>
             <div className='budget-header'>
@@ -85,6 +94,8 @@ const Budget = (props) => {
             <div id='budget-list'>
                 {props.category.map((element, index) => {
                     return(
+                        element.category_type === 'Unallocated' && element.category_balance === 0 
+                            ? null:
                         <Categories
                             key = {index}
                             category_id = {element.category_id}
@@ -92,8 +103,10 @@ const Budget = (props) => {
                             category_allocated = {element.category_allocated}
                             category_type = {element.category_type}
                             category_balance = {element.category_balance}
+                            catPenny = {catPenny}
+                            setCatPennyFN = {setCatPenny}
                             removeFN = {remove}/>
-                    )
+                        )
                 })}
             </div>
         </div>

@@ -9,7 +9,8 @@ import routes from './routes';
 function App(props) {
 return (
     <div className="App">
-        {props.location.pathname === '/' || props.location.pathname === '/register' || props.location.pathname === '/login'
+        {props.location.pathname === '/' || props.location.pathname === '/register' 
+        || props.location.pathname === '/login'
         ? (<>
             {routes}
             </>)

@@ -9,18 +9,19 @@ const Category = (props) => {
     ))
 
     return(
-        <div id='budget-main'>
+        <div className='budget-main'>
             <div className='budget-totals'>
                 <div className='budget-cat-total'>
                     <span>Allocated</span>
                     <div className='line'/>
-                    ${current[0] && current[0].category_allocated}
+                    {current[0] && current[0].category_type === 'Dollar'?"$":"%"}
+                    {current[0] && current[0].category_allocated}
                 </div>
-                <div className='circle'>{current[0] && current[0].category_name}</div>
+                <div className='circle' id='cat-icon'>{current[0] && (current[0].category_balance).toFixed(2)}</div>
                 <div className='budget-cat-total'>
                     <span>Remaining</span>
                     <div className='line'/>
-                    ${current[0] && current[0].category_balance}
+                    ${current[0] && (current[0].category_balance).toFixed(2)}
                 </div>
             </div>
             <div className='budget-header'>
@@ -35,6 +36,7 @@ const Category = (props) => {
                 {props.transactions
                     .filter(element => element.category_id === current[0].category_id)
                     .map((element, index) => {
+                        console.log(element)
                         return(
                             <Transactions
                                 key = {index}

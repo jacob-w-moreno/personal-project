@@ -37,6 +37,8 @@ app.delete('/api/category/:id', catCtrl.deleteCat)
 
 // ===== ===== TRANSACTIONS ===== =====
 
+app.put('/api/distribute', transCtrl.distribute)
+app.post('/api/income', transCtrl.addInc)
 app.post('/api/transaction', transCtrl.addTrans)
 app.get('/api/transaction', transCtrl.getTrans)
 

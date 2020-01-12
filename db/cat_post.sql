@@ -8,7 +8,7 @@ insert into category (
     ${name},
     ${type},
     ${amount},
-    50,
+    0,
     ${users_id}
     -- ^^^^^ change this to 0 at some point
 )
