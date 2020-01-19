@@ -11,6 +11,13 @@ const Budget = (props) => {
     const [catPenny, setCatPenny] = useState(false);
     // const[userId, setUserId] = useState(null);
 
+    let today = new Date();
+    let month = (today.getMonth()+1);
+    let day = (today.getDate());
+    console.log(today);
+    console.log(month);
+    console.log(day);
+
     useEffect(() => {
         getCategory();
         getTransactions()}, [])
@@ -68,30 +75,28 @@ const Budget = (props) => {
         .reduce((acc, curr) => acc + curr, 0);
 
     return(
-        <div className='budget-main'>
-            <div className='budget-totals' onClick={()=>toggleShowMore(showMore ? false : true)}>
-                <div className='budget-cat-total'>
+        <div className='main'>
+            <div className='totals' onClick={()=>toggleShowMore(showMore ? false : true)}>
+                <div className='total-cat'>
                     <span>${showMore ? dollarBalance.toFixed(2) : Math.trunc(dollarBalance)}</span>
                     <div className='line'/>
                     <span>${showMore ? dollarTotal.toFixed(2) : Math.trunc(dollarTotal)}</span>
                 </div>
                 {/* Add all category totals and put them below */}
                 <div className='circle'>${showMore ? total.toFixed(2) : Math.trunc(total)}</div>
-                <div className='budget-cat-total'>
+                <div className='total-cat'>
                     <span>${showMore ? percentageBalance.toFixed(2) : Math.trunc(percentageBalance)}</span>
                     <div className='line'/>
                     <span>%{percentageTotal}</span>
                 </div>
             </div>
-            <div className='budget-header'>
-                Categories
+            <div className='header'>Categories</div>
+            <div className='white-space'>
+                <span className='column-left'>Allocated</span>
+                <span className='column'>Name</span>
+                <span className='column-right'>Balance</span>
             </div>
-            <div className='budget-white'>
-                <span>Allocated</span>
-                <span>Name</span>
-                <span>Balance</span>
-            </div>
-            <div id='budget-list'>
+            <div className='list'>
                 {props.category.sort().map((element, index) => {
                     return(
                         element.category_type === 'Unallocated' && element.category_balance === 0 

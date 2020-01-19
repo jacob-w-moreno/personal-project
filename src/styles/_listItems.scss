@@ -1,0 +1,28 @@
+.mini-main{
+    @include mpat(0, 10px 0px);
+    @include flexCenter(row);
+    justify-content: space-between;
+    border-bottom: 1px solid $light;
+    color: $light;
+    font-size: 20px;
+}
+.mini-gray{
+    width: 100px;
+    @include box;
+    text-align: left;
+    padding-left: 15px;
+}
+.mini-name{
+    width: 250px;
+
+    color: white;
+    font-weight: bold;
+    overflow: scroll;
+}
+.mini-balance{
+    @include box;
+    width: 100px;
+    text-align: right;
+    padding-right: 15px;
+    color: white;
+}

@@ -5,16 +5,16 @@ import Transactions from './Transactions';
 const History = (props) => {
     
     return(
-        <div className='budget-main' id='history-main'>
-            <div className='budget-header'>
+        <div className='main' id='history-main'>
+            <div className='header'>
                 Transactions
             </div>
-            <div className='budget-white'>
-                <span>Date</span>
-                <span>Name</span>
-                <span>Amount</span>
+            <div className='white-space'>
+                <span className='column-left'>Date</span>
+                <span className='column'>Name</span>
+                <span className='column-right'>Amount</span>
             </div>
-            <div id='budget-list'>
+            <div className='list'>
                 {props.transactions
                     .map((element, index) => {
                         return(

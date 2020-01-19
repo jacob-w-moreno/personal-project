@@ -1,0 +1,48 @@
+$orange: #ff9801;
+$gray: #757575;
+$light: #ccc;
+
+@mixin flexCenter ($direction) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin dim($height, $width){
+    height: $height;
+    width: $width;
+}
+
+@mixin mpat($margin, $padding){
+    margin: $margin;
+    padding: $padding;
+    @include box();
+}
+
+@mixin box(){
+    box-sizing: border-box;
+}
+
+@mixin input(){
+    margin-top: 15px;
+    padding-left: 10px;
+    border-radius: 7px;
+    border: none;
+
+    height: 30px;
+
+    font-size: 15px;
+}
+
+@mixin button(){
+    margin-top: 40px;
+    border: none;
+    border-radius: 10px;
+
+    height: 45px;
+    background: $orange;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}

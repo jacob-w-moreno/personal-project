@@ -1,0 +1,68 @@
+#header{
+    width: 100vw;
+}
+.header-button{
+    background: none;
+    border: none;
+    border-bottom: 1px solid $gray;
+
+    width: 100%;
+    padding: 8px 18px;
+    text-align: left;
+    font-size: 20px;
+}
+.header-extra{
+    @include flexCenter(column);
+
+    width: 300px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0px 10px 10px rgb(75, 75, 75);
+
+    animation-name: extra;
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+}
+    @keyframes extra {
+        from {
+            height: 0px;
+        } to {
+            height: 127px;
+        }
+    }
+    #left{
+        position: fixed;
+        top: 60px;
+        left: 0px;
+    }
+    #right{
+        position: fixed;
+        top: 60px;
+        right: 0px;
+    }
+.header-heading{
+    font-size: 30px;
+    font-weight: 800;
+}
+.header-main{
+    height: 60px;
+    background: $orange;
+    @include flexCenter(row);
+        justify-content: space-between;
+    @include mpat(0, 0px 15px);
+}
+.icon{
+    @include dim(30px, 30px);
+    background-size: cover;
+}
+    #hamburger{
+        background-image: url("https://squidslippers.s3-us-west-1.amazonaws.com/Hamburger_Menu.png");
+    }
+    #back{
+        background-image: url('https://squidslippers.s3-us-west-1.amazonaws.com/Back_Arrow.png');
+    }
+    #add{
+        background-image: url('https://squidslippers.s3-us-west-1.amazonaws.com/Icon_Add.png');
+    }

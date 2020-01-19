@@ -18,36 +18,25 @@ const Login = (props) => {
     }
 
     return (
-        <div className='auth-secondary'>
-            <header id='landing-header'>
-                <div>
-                    <span id='landing-supple'>supple</span>
-                    <span id='landing-budget'>budget</span>
-                </div>
-            </header>
-            <p className='auth-secondary-text'>Welcome back!</p>
-            <div className='auth-inputs'>
-                <input
-                    className='auth-input'
-                    maxLength='100'
-                    placeholder='Enter Email'
+        <div className='landing'>
+            <div className='logo'>
+                <span>supple</span>
+                <span className='logo-budget'>budget</span>
+            </div>
+            <p className='landing-intro'>Welcome back!</p>
+            <div className='auth-form'>
+                <input className='input'
                     value={email}
-                    onChange={(event) =>{
-                        updateEmail(event.target.value)
-                    }}/>
-                <input 
-                    className='auth-input'
-                    type='password'
-                    maxLength='30'
-                    placeholder='Enter Password'
+                    placeholder='Email'
+                    maxLength='100'
+                    onChange={(event) =>{updateEmail(event.target.value)}}/>
+                <input className='input'
                     value={password}
-                    onChange={(event)=>{
-                        updatePassword(event.target.value)
-                    }}/>
-            <button
-                className='auth-button'
-                onClick={login}>
-                Login</button>
+                    type='password'
+                    placeholder='Password'
+                    maxLength='30'
+                    onChange={(event)=>{updatePassword(event.target.value)}}/>
+                <button className='button' onClick={login}>Login</button>
             </div>
             <Link to='/' id='register-login'>New to supplebudget? Sign up.</Link>
         </div>

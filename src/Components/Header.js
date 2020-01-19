@@ -34,7 +34,7 @@ const Header = (props) => {
         getUser()}, [])
 
     return (
-        <div>
+        <div id='header'>
             <div>
                 {props.history.location.pathname === '/budget' ?
                     <div className='header-main'>
@@ -49,23 +49,42 @@ const Header = (props) => {
                                 toggleExtra(false)}}/>
 
                         {add ?
-                            <div className='header-extra' id='add-buttons'>
-                                <Link to='create-category'>
-                                    <button className='ham-butt-add' 
+                            <div className='header-extra' id='right'>
+                                {/* <Link to='create-category'> */}
+                                    <button className='header-button' 
                                     onClick={()=>toggleAdd(false)}>
-                                    Add Category</button></Link> 
-                                <Link to='add-income'>
-                                    <button className='ham-butt-add' 
+                                    Add Category</button>
+                                    {/* </Link>  */}
+                                {/* <Link to='add-income'> */}
+                                    <button className='header-button' 
                                     onClick={()=>toggleAdd(false)}>
-                                    Add Income</button></Link>    
-                                <Link to='create-transaction'>
-                                    <button className='ham-butt-add' id='hamburger-end'
+                                    Add Income</button>
+                                    {/* </Link>     */}
+                                {/* <Link to='create-transaction'> */}
+                                    <button className='header-button'
                                     onClick={()=>toggleAdd(false)}>
-                                    Add Expense</button></Link> 
+                                    Add Expense</button>
+                                    {/* </Link>  */}
                                 <div id='white-space' onClick={()=>{toggleAdd(false); toggleExtra(false)}}/>
                             </div>
                             :null}
                     </div> : null}
+
+                    {extra ?
+                <div className='header-extra' id='left'>
+                    <button className='header-button'
+                        onClick={()=>{toggleExtra(false);props.history.push('/pie-chart')}}>
+                        Pie Chart</button>
+                    <button className='header-button'
+                        onClick={()=>{toggleExtra(false);props.history.push('/history')}}>
+                        Transaction History</button>
+                    <button className='header-button'
+                        onClick={()=>{logout(); props.logout();}}>
+                        Log Out</button>
+                    {/* <div id='white-space' onClick={()=>{toggleAdd(false); toggleExtra(false)}}/> */}
+                </div>
+                : null
+            }
 
                 {arr[arr.length-2] === 'category' ? 
                     <div className='header-main'>
@@ -111,27 +130,6 @@ const Header = (props) => {
                     </div> : null}
 
             </div>
-
-            {/* <div id='header-main'>
-                <div className='icon' id='hamburger' onClick={()=>toggleExtra(extra ? false : true)}/>
-                <h1 className='header-heading'>{arr[arr.length - 1]} </h1>
-            </div> */}
-
-            {extra ?
-                <div className='header-extra'>
-                <button className='hamburger-button'
-                        onClick={()=>{toggleExtra(false);props.history.push('/pie-chart')}}>
-                        Pie Chart</button>
-                    <button className='hamburger-button'
-                        onClick={()=>{toggleExtra(false);props.history.push('/history')}}>
-                        Transaction History</button>
-                    <button className='hamburger-button' id='hamburger-end'
-                        onClick={()=>{logout(); props.logout();}}>
-                        Log Out</button>
-                    <div id='white-space' onClick={()=>{toggleAdd(false); toggleExtra(false)}}/>
-                </div>
-                : null
-            }
             
         </div>
     )
