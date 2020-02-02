@@ -1,6 +1,6 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import Register from './Components/Register';
+// import Register from './Components/Register';
 import Landing from './Components/Landing';
 import Login from './Components/Login';
 import Transactions from './Components/Transactions';
@@ -14,9 +14,9 @@ import History from './Components/History';
 
 export default (
     <Switch>
-        <Route exact path = '/' component = {Landing}/>
-        <Route path = '/register' component = {Register}/>
-        <Route path = '/login' component = {Login}/>
+        <Route exact path = '/' component = {Login}/>
+        <Route path = '/register' component = {Landing}/>
+        {/* <Route path = '/login' component = {Login}/> */}
         <Route path = '/budget' component = {Budget}/>
         <Route path = '/transactions' component = {Transactions}/>
         <Route path = '/create-category' component = {CreateCategory}/>

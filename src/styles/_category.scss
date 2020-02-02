@@ -1,0 +1,15 @@
+#inner-popup{
+    @include mpat(150px auto, 20px);
+    @include dim(400px, 400px);
+    position: relative;
+    background: white;
+    color: black;
+    border-radius: 20px;
+}
+#outer-popup{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    color: white;
+    background-color: rgba(0,0,0,0.5);
+}

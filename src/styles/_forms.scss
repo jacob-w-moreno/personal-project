@@ -1,0 +1,72 @@
+.form-add-button{
+    @include button;
+    margin: 0;
+    margin-top: 25px;
+}
+#form-dropdown{
+    padding: 0px 10px;
+    border: 1px solid $light;
+    border-radius: 7px;
+    font-weight: bold;
+}
+    #form-dropdown-item{
+        padding: 10px 0px;
+        border-bottom: 1px solid $light;
+    }
+    #form-chosen-category{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0px;
+    }
+.form-input{
+    @include input2;
+    background: none;
+    border: 1px solid $light;
+}
+.form-main{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 20px;
+}
+#form-percent{
+    margin: 10px auto;
+    margin-bottom: 0px;
+    font-weight: bold;
+    overflow: hidden;
+    height: 30px;
+
+    animation-name: percent;
+    animation-duration: 200ms;
+    animation-timing-function: ease-in-out;
+}
+    @keyframes percent {
+        from {
+            height: 0px;
+        } to {
+            height: 30px;
+        }
+    }
+    #percent{
+        font-size: 30px;
+        margin: 0px 15px;
+    }
+.form-title{
+    color: $light;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.form-type-button{
+    height: 40px;
+    width: 50%;
+    background: none;
+    color: $light;
+    font-size: 20px;
+}
+    #clicked-button{
+        background: $orange;
+        font-weight: bold;
+        color: white;
+        border: 2px solid white;
+    }

@@ -29,12 +29,35 @@
 }
 
 .input {
-  margin-top: 15px;
   padding-left: 10px;
+  height: 40px;
   border-radius: 7px;
-  border: none;
-  height: 30px;
-  font-size: 15px;
+  border: 1px solid #ccc;
+  background: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  margin-top: 15px;
+}
+
+.input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #ccc;
+}
+
+.input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+}
+
+.input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+}
+
+.input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #ccc;
 }
 
 .landing {
@@ -54,7 +77,7 @@
 }
 
 .landing-intro {
-  margin-top: 100px;
+  margin-top: 200px;
   font-size: 26px;
   color: white;
   width: calc(100vw - 50px);
@@ -144,6 +167,16 @@
   width: 120px;
 }
 
+.input-category-name {
+  font-family: raleway;
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+  border: 1px solid white;
+  text-align: center;
+  background: none;
+}
+
 .header {
   padding: 12px 0px;
   border-top-right-radius: 10px;
@@ -173,6 +206,7 @@
 }
 
 .main {
+  margin: 0 auto;
   width: 500px;
 }
 
@@ -377,6 +411,7 @@
 
 .header-main {
   height: 60px;
+  width: 100vw;
   background: #ff9801;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -418,6 +453,166 @@
   background-image: url("https://squidslippers.s3-us-west-1.amazonaws.com/Icon_Add.png");
 }
 
+.form-add-button {
+  margin-top: 40px;
+  border: none;
+  border-radius: 10px;
+  height: 45px;
+  background: #ff9801;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+  margin-top: 25px;
+}
+
+#form-dropdown {
+  padding: 0px 10px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-weight: bold;
+}
+
+#form-dropdown-item {
+  padding: 10px 0px;
+  border-bottom: 1px solid #ccc;
+}
+
+#form-chosen-category {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 0px;
+}
+
+.form-input {
+  padding-left: 10px;
+  height: 40px;
+  border-radius: 7px;
+  border: 1px solid #ccc;
+  background: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background: none;
+  border: 1px solid #ccc;
+}
+
+.form-input::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #ccc;
+}
+
+.form-input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #ccc;
+}
+
+.form-input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #ccc;
+}
+
+.form-input:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #ccc;
+}
+
+.form-main {
+  width: 500px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: left;
+  font-size: 20px;
+}
+
+#form-percent {
+  margin: 10px auto;
+  margin-bottom: 0px;
+  font-weight: bold;
+  overflow: hidden;
+  height: 30px;
+  -webkit-animation-name: percent;
+          animation-name: percent;
+  -webkit-animation-duration: 200ms;
+          animation-duration: 200ms;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+@-webkit-keyframes percent {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 30px;
+  }
+}
+
+@keyframes percent {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 30px;
+  }
+}
+
+#percent {
+  font-size: 30px;
+  margin: 0px 15px;
+}
+
+.form-title {
+  color: #ccc;
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.form-type-button {
+  height: 40px;
+  width: 50%;
+  background: none;
+  color: #ccc;
+  font-size: 20px;
+}
+
+#clicked-button {
+  background: #ff9801;
+  font-weight: bold;
+  color: white;
+  border: 2px solid white;
+}
+
+#inner-popup {
+  margin: 150px auto;
+  padding: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: 400px;
+  width: 400px;
+  position: relative;
+  background: white;
+  color: black;
+  border-radius: 20px;
+}
+
+#outer-popup {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
 .App {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -430,7 +625,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 100vw;
+  height: 100vh;
   background: #757575;
   font-family: raleway;
   color: white;

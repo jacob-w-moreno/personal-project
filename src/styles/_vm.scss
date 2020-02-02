@@ -35,6 +35,19 @@ $light: #ccc;
     font-size: 15px;
 }
 
+@mixin input2(){
+    padding-left: 10px;
+    height: 40px;
+    border-radius: 7px;
+    border: 1px solid $light;
+    background: none;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    @include placeholder-color($light);
+}
+
 @mixin button(){
     margin-top: 40px;
     border: none;
@@ -46,3 +59,18 @@ $light: #ccc;
     font-weight: bold;
     font-size: 20px;
 }
+
+@mixin placeholder-color($color) {
+    &::-webkit-input-placeholder { /* WebKit browsers */
+        color: $color;
+    }
+    &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: $color;
+    }
+    &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: $color;
+    }
+    &:-ms-input-placeholder { /* Internet Explorer 10+ */
+        color: $color;
+    }
+  }

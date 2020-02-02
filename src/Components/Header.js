@@ -50,27 +50,21 @@ const Header = (props) => {
 
                         {add ?
                             <div className='header-extra' id='right'>
-                                {/* <Link to='create-category'> */}
                                     <button className='header-button' 
-                                    onClick={()=>toggleAdd(false)}>
-                                    Add Category</button>
+                                        onClick={()=>{toggleAdd(false);props.history.push('/create-category')}}>
+                                        Add Category</button>
                                     {/* </Link>  */}
-                                {/* <Link to='add-income'> */}
                                     <button className='header-button' 
-                                    onClick={()=>toggleAdd(false)}>
-                                    Add Income</button>
-                                    {/* </Link>     */}
-                                {/* <Link to='create-transaction'> */}
+                                        onClick={()=>{toggleAdd(false);props.history.push('/add-income')}}>
+                                        Add Income</button>
                                     <button className='header-button'
-                                    onClick={()=>toggleAdd(false)}>
-                                    Add Expense</button>
-                                    {/* </Link>  */}
-                                <div id='white-space' onClick={()=>{toggleAdd(false); toggleExtra(false)}}/>
+                                        onClick={()=>{toggleAdd(false);props.history.push('/create-transaction')}}>
+                                        Add Expense</button>
                             </div>
                             :null}
                     </div> : null}
 
-                    {extra ?
+            {extra ?
                 <div className='header-extra' id='left'>
                     <button className='header-button'
                         onClick={()=>{toggleExtra(false);props.history.push('/pie-chart')}}>
@@ -81,18 +75,16 @@ const Header = (props) => {
                     <button className='header-button'
                         onClick={()=>{logout(); props.logout();}}>
                         Log Out</button>
-                    {/* <div id='white-space' onClick={()=>{toggleAdd(false); toggleExtra(false)}}/> */}
                 </div>
                 : null
             }
 
-                {arr[arr.length-2] === 'category' ? 
+                {/* {arr[arr.length-2] === 'category' ? 
                     <div className='header-main'>
                         <Link to='/budget'><div className='icon' id='back'/></Link>
                         <h1 className = 'header-heading'>{arr[arr.length-1].toUpperCase()}</h1>
-                        {/* <h1 className = 'header-heading'>CATEGORY</h1> */}
                         <div className='icon' id='add'/>
-                    </div> : null}
+                    </div> : null} */}
                 
                 {props.history.location.pathname === '/pie-chart'?
                     <div className='header-main'>

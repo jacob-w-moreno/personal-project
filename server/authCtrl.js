@@ -29,7 +29,7 @@ module.exports = {
 
         let user = await db.user_get(email);
         user = user[0];
-        console.log(user);
+        console.log('user:',user);
         if(!user){
             return res.status(400).send('Email not found');
         }
@@ -38,17 +38,14 @@ module.exports = {
             delete user.passwords_password;
             delete user.passwords_id;
             session.user = user;
-            console.log(`user is: ${session.user}`)
             res.status(202).send(session.user)
         } else {
-            console.log(password, user.passwords_password);
             res.status(401).send('Incorrect password')
             console.log('you suck')
         }
     },
     checkUser: (req, res) => {
         if(req.session.user){
-            console.log(req.session.user)
             res.status(200).send(req.session.user);
         } else {
             res.status(400).send('User not found');

@@ -9,14 +9,16 @@ import axios from 'axios';
 const Budget = (props) => {
     const[showMore, toggleShowMore] = useState(false);
     const [catPenny, setCatPenny] = useState(false);
-    // const[userId, setUserId] = useState(null);
+    const [allocated, filterAllocated] = useState(true);
+    const [category, filterCategory] = useState(true);
+    const [balance, filterBalance] = useState(true);
 
     let today = new Date();
     let month = (today.getMonth()+1);
     let day = (today.getDate());
-    console.log(today);
-    console.log(month);
-    console.log(day);
+    // console.log(today);
+    // console.log(month);
+    // console.log(day);
 
     useEffect(() => {
         getCategory();
@@ -92,12 +94,19 @@ const Budget = (props) => {
             </div>
             <div className='header'>Categories</div>
             <div className='white-space'>
-                <span className='column-left'>Allocated</span>
+                <span className='column-left' 
+                    // onClick={()=>{
+                    //     if(allocated === true){
+                    //         props.category.sort((a,b)=>(a.category_allocated < b.category_allocated)?-1:1);
+                    //     }
+                    //     filterAllocated(false);
+                    // }}
+                    >Allocated</span>
                 <span className='column'>Name</span>
                 <span className='column-right'>Balance</span>
             </div>
             <div className='list'>
-                {props.category.sort().map((element, index) => {
+                {props.category.sort((a,b)=>(a.category_balance < b.category_balance)?1:-1).map((element, index) => {
                     return(
                         element.category_type === 'Unallocated' && element.category_balance === 0 
                             ? null:

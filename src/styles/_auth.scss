@@ -13,13 +13,14 @@
     @include button();
 }
 .input{
-    @include input();
+    @include input2();
+    margin-top: 15px;
 }
 .landing{
     @include flexCenter(column);
 }
 .landing-intro{
-    margin-top: 100px;
+    margin-top: 200px;
     font-size: 26px;
     color: white;
     width: calc(100vw - 50px);

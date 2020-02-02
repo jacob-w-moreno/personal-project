@@ -77,12 +77,12 @@ a {text-decoration: none;} */
     border-radius: 10px;
     font-size: 20px;
 } */
-.form-title{
+/* .form-title{
     color: #ccc;
     text-align: center;
     margin-top: 20px;
-}
-.form-input{
+} */
+/* .form-input{
     margin: 3px 0px 5px 0px;
     padding-left: 10px;
 
@@ -94,8 +94,8 @@ a {text-decoration: none;} */
     font-size: 20px;
     font-weight: bold;
     color: white;
-}
-.form-main{
+} */
+/* .form-main{
     width: calc(100vw - 20px);
     max-width: 500px;
     
@@ -107,8 +107,8 @@ a {text-decoration: none;} */
     font-size: 20px;
     color: white;
     text-align: left;
-}
-#form-percent{
+} */
+/* #form-percent{
     margin: 10px auto;
     margin-bottom: 0;
     font-weight: bold;
@@ -127,13 +127,13 @@ a {text-decoration: none;} */
         } to {
             height: 30px;
         }
-    }
-#percent{
+    } */
+/* #percent{
     color: white;
     font-size: 30px;
     margin: 0px 15px;
     vertical-align: middle;
-}
+} */
 /* ===== ===== LANDING ===== ===== */
 /* #landing-main{
     padding-top: 15px;
@@ -414,23 +414,8 @@ a {text-decoration: none;} */
     max-height: calc(100vh - 350px);
     overflow: scroll;
 } */
-#budget-buttons{
-    margin-top: 25px;
-    display: flex;
-    justify-content: space-around;
-}
-.budget-button{
-    padding: 10px;
-    width: 180px;
-    background: #ff9801;
-    border: none;
-    border-radius: 10px;
-
-    font-size: 15px;
-    color: white;
-}
 /* ===== ===== ===== CATEGORY ===== ===== ===== */
-.cat-main{
+/* .cat-main{
     margin: 0 auto;
     padding: 10px 0px;
     box-sizing: border-box;
@@ -445,13 +430,13 @@ a {text-decoration: none;} */
     justify-content: center;
     
     text-decoration: none;
-}
-.cat-info{
+} */
+/* .cat-info{
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #ccc;
-}
+} */
 /* .cat-gray{
     width: 80px;
 
@@ -468,7 +453,7 @@ a {text-decoration: none;} */
     text-align: center;
     overflow: visible;
 } */
-.cat-name-2{
+/* .cat-name-2{
     width: 220px;
     overflow: scroll;
 
@@ -483,34 +468,34 @@ a {text-decoration: none;} */
     font-size: 20px;
     text-align: right;
     color: white;
-}
-#trans-income{
+} */
+/* #trans-income{
     color: rgb(153, 255, 158);
 }
 #trans-outgo{
     color: rgb(255, 185, 185);
-}
+} */
 
 /* ===== ===== ===== CREATE CATEGORY ===== ===== ===== */
-.form-type-button{
+/* .form-type-button{
     height: 35px;
     width: 50%;
     background: none;
-    /* border-radius: 5px; */
+    border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 5px;
     margin-top: 4px;
 
     color: #ccc;
     font-size: 20px;
-}
-#clicked-button{
+} */
+/* #clicked-button{
     background: #ff9801;
     font-weight: bold;
     color: white;
     border: 2px solid white;
-}
-.form-add-button{
+} */
+/* .form-add-button{
     margin: 8px auto;
 
     height: 35px;
@@ -522,7 +507,7 @@ a {text-decoration: none;} */
 
     color: white;
     font-size: 20px;
-}
+} */
 /* #cc-keyboard{
     height: 270px;
     width: 100vw;
@@ -534,11 +519,7 @@ a {text-decoration: none;} */
     left: 0px;
 } */
 /* ===== ===== ===== CREATE TRANSACTION ===== ===== ===== */
-#ct-main{
-    display: flex;
-    flex-direction: column;
-}
-#ct-form-dropdown{
+/* #ct-form-dropdown{
     margin: 3px 0px 25px 0px;
     padding: 0px 10px;
 
@@ -549,24 +530,24 @@ a {text-decoration: none;} */
     font-size: 20px;
     font-weight: bold;
     color: white;
-}
-#ct-dropdown{
+} */
+/* #ct-dropdown{
     display: flex;
     flex-direction: column;
     font-weight: normal;
     color: #ccc;
     max-height: 200px;
     overflow: scroll;
-}
-#ct-dropdown-category{
+} */
+/* #ct-dropdown-category{
     margin: 0 auto;
     padding: 10px 0px;
     border-bottom: 1px solid #ccc;
     width: 100%;
     color: white;
-}
-#ct-chosen-cat{
+} */
+/* #ct-chosen-cat{
     display: flex;
     justify-content: space-between;
     padding: 10px 0px;
-}
+} */

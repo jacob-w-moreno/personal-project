@@ -38,7 +38,7 @@ const Login = (props) => {
                     onChange={(event)=>{updatePassword(event.target.value)}}/>
                 <button className='button' onClick={login}>Login</button>
             </div>
-            <Link to='/' id='register-login'>New to supplebudget? Sign up.</Link>
+            <Link to='/register' className='landing-link'>New to supplebudget? Sign up.</Link>
         </div>
     )
 }

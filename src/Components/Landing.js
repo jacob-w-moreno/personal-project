@@ -40,7 +40,7 @@ const Landing = (props) => {
                 <button className='button'>Sign Up</button>
                 </form>
             
-            <Link to='/login' className='landing-link'>
+            <Link to='/' className='landing-link'>
                     Already have an account? Log in.
                 </Link>
         </div>

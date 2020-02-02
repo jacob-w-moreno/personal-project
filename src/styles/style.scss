@@ -7,13 +7,15 @@
 @import './budget';
 @import './listItems';
 @import './header';
+@import './forms';
+@import './category';
 
 .App{
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    height: 100vw;
+    height: 100vh;
     background: $gray;
     font-family: raleway;
     color: white;

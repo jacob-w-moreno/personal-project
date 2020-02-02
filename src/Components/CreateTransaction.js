@@ -36,16 +36,15 @@ const CreateTransaction = (props) => {
     return(
         <div className='form-main'>
             <span className='form-title'>Category</span>
-            <div id='ct-form-dropdown'>
+            <div id='form-dropdown'>
                 {showMore ? 
-                    <div 
-                        id='ct-dropdown'
+                    <div
                         onClick={()=> toggleShowMore(toggleShowMore ? false : true)}>
                         {props.category.map((element, index) => {
                             return (
                                 <div 
                                     key={index}
-                                    id='ct-dropdown-category'
+                                    id='form-dropdown-item'
                                     onClick={()=> {
                                         setCategory(element.category_name);
                                         setCategory_id(element.category_id);
@@ -57,7 +56,7 @@ const CreateTransaction = (props) => {
                     </div>
                 :
                     <div 
-                        id='ct-chosen-cat'
+                        id='form-chosen-category'
                         onClick={()=> toggleShowMore(true)}>
                         <span>{category}</span>
                         {category === 'Choose a Category' ?

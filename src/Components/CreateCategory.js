@@ -37,7 +37,7 @@ const CreateCategory = (props) => {
     return(
         <div className='form-main'>
             <span className='form-title'> Type </span>
-            <div id='form-type-buttons'>
+            <div>
                 <button className='form-type-button'
                     id={type === 'Dollar'?'clicked-button':null}
                     onClick={()=>{setType('Dollar'); setAmount(0)}}>
