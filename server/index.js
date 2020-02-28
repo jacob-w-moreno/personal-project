@@ -32,7 +32,9 @@ app.get('/api/user', authCtrl.checkUser)
 // ===== ===== CATEGORY ===== =====
 
 app.post('/api/category', catCtrl.addCat)
+app.post('/api/overflow', catCtrl.addOverflow)
 app.get('/api/category', catCtrl.getCat)
+app.put('/api/category', catCtrl.editCat)
 app.delete('/api/category/:id', catCtrl.deleteCat)
 
 // ===== ===== TRANSACTIONS ===== =====

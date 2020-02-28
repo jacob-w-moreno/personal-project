@@ -93,10 +93,7 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  left: 5px;
-  font-size: 33px;
+  font-size: 20px;
   font-weight: bold;
   color: white;
 }
@@ -155,16 +152,10 @@
 
 .column-left {
   text-align: left;
-  width: 120px;
-}
-
-.column {
-  width: 120px;
 }
 
 .column-right {
   text-align: right;
-  width: 120px;
 }
 
 .input-category-name {
@@ -179,6 +170,7 @@
 
 .header {
   padding: 12px 0px;
+  width: 100vw;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   background: #ff9801;
@@ -207,7 +199,7 @@
 
 .main {
   margin: 0 auto;
-  width: 500px;
+  width: 100vw;
 }
 
 .totals {
@@ -231,7 +223,7 @@
   padding: 20px 10px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  width: 400px;
+  margin: 0 auto;
 }
 
 .total-cat {
@@ -277,6 +269,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 100vw;
   background: white;
   color: #757575;
 }
@@ -307,17 +300,49 @@
   font-size: 20px;
 }
 
+.mini-main:hover {
+  background-color: #7d7d7d;
+}
+
 .mini-gray {
   width: 100px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   text-align: left;
+  font-weight: bold;
   padding-left: 15px;
+}
+
+.mini-white {
+  width: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: left;
+  padding-left: 15px;
+  font-weight: bold;
+  color: white;
+}
+
+.mini-gray-full {
+  width: 100px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: left;
+  padding-left: 15px;
+  font-weight: bold;
+  color: #97ff97;
 }
 
 .mini-name {
   width: 250px;
   color: white;
+  font-weight: bold;
+  overflow: scroll;
+}
+
+.mini-name-dollar {
+  width: 250px;
+  color: #ccc;
   font-weight: bold;
   overflow: scroll;
 }
@@ -328,7 +353,18 @@
   width: 100px;
   text-align: right;
   padding-right: 15px;
-  color: white;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.mini-balance-full {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100px;
+  text-align: right;
+  padding-right: 15px;
+  color: #97ff97;
+  font-weight: bold;
 }
 
 #header {
@@ -453,6 +489,17 @@
   background-image: url("https://squidslippers.s3-us-west-1.amazonaws.com/Icon_Add.png");
 }
 
+#buttons {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
 .form-add-button {
   margin-top: 40px;
   border: none;
@@ -464,6 +511,7 @@
   font-size: 20px;
   margin: 0;
   margin-top: 25px;
+  width: 100%;
 }
 
 #form-dropdown {
@@ -499,6 +547,7 @@
   color: white;
   background: none;
   border: 1px solid #ccc;
+  width: 100%;
 }
 
 .form-input::-webkit-input-placeholder {
@@ -522,7 +571,7 @@
 }
 
 .form-main {
-  width: 500px;
+  width: 100vw;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -530,8 +579,14 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   text-align: left;
   font-size: 20px;
+  padding: 0px 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 #form-percent {
@@ -579,7 +634,7 @@
 
 .form-type-button {
   height: 40px;
-  width: 50%;
+  width: 100%;
   background: none;
   color: #ccc;
   font-size: 20px;
@@ -593,16 +648,97 @@
 }
 
 #inner-popup {
-  margin: 150px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 228px auto;
   padding: 20px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  height: 400px;
-  width: 400px;
+  width: 500px;
+  font-size: 20px;
   position: relative;
-  background: white;
+  background: #757575;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+#inner-popup span {
+  font-size: 25px;
+  font-weight: bold;
+  color: #89ff89;
+}
+
+.delete-button {
+  background: none;
+  border: 1px solid #ccc;
+  color: white;
+  border-radius: 10px;
+  height: 40px;
+  width: 450px;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+#delete-cancel {
+  border: none;
+  background: #ccc;
   color: black;
-  border-radius: 20px;
+}
+
+#delete-delete {
+  border: none;
+  background: red;
+  font-weight: bold;
+  color: white;
+}
+
+#edit-allocated {
+  background: none;
+  border: 2px solid #757575;
+  color: black;
+  width: 100px;
+  height: 15px;
+  font-family: raleway;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#edit-name {
+  color: black;
+  border: none;
+  background: none;
+  font-family: raleway;
+  font-size: 30px;
+  font-weight: 800;
+  text-align: center;
+}
+
+#edit-total {
+  width: 110px;
+  background: none;
+  border: none;
+  color: black;
+  text-align: center;
+  font-family: raleway;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#margin {
+  margin-bottom: 20px;
 }
 
 #outer-popup {
@@ -610,7 +746,7 @@
   height: 100%;
   width: 100%;
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .App {

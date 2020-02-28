@@ -1,15 +1,76 @@
 #inner-popup{
-    @include mpat(150px auto, 20px);
-    @include dim(400px, 400px);
+    @include flexCenter(column);
+    @include mp(228px auto, 20px);
+    width: 500px;
+    font-size: 20px;
     position: relative;
-    background: white;
+    background: $gray;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    span{
+        font-size: 25px;
+        font-weight: bold;
+        color: rgb(137, 255, 137);
+    }
+}
+.delete-button{
+    background: none;
+    border: 1px solid $light;
+    color: white;
+    border-radius: 10px;
+    @include dim(40px, 450px);
+    margin-top: 10px;
+    font-size: 20px;
+}
+#delete-cancel{
+    border: none;
+    background: $light;
     color: black;
-    border-radius: 20px;
+}
+#delete-delete{
+    border: none;
+    background: red;
+    font-weight: bold;
+    color: white;
+}
+#edit-allocated{
+    background: none;
+    border: 2px solid $gray;
+    color: black;
+    width: 100px;
+    height: 15px;
+    font-family: raleway;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+#edit-name{
+    color: black;
+    border: none;
+    background: none;
+    font-family: raleway;
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+#edit-total{
+    width: 110px;
+    background: none;
+    border: none;
+    color: black;
+    text-align: center;
+    font-family: raleway;
+    font-size: 24px;
+    font-weight: bold;
+}
+#margin{
+    margin-bottom: 20px;
 }
 #outer-popup{
     position: fixed;
     height: 100%;
     width: 100%;
     color: white;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.7);
 }

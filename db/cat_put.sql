@@ -1,3 +1,5 @@
-update category
-set category_balance = ${newBalance}
-where category_id = ${catId};
+update category set
+category_balance = ${balance},
+category_allocated = ${allocated},
+category_name = ${name}
+where category_id = ${categoryID};

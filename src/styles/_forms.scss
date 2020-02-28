@@ -1,7 +1,13 @@
+#buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
 .form-add-button{
     @include button;
     margin: 0;
     margin-top: 25px;
+    width: 100%;
 }
 #form-dropdown{
     padding: 0px 10px;
@@ -22,13 +28,17 @@
     @include input2;
     background: none;
     border: 1px solid $light;
+    width: 100%;
 }
 .form-main{
-    width: 500px;
+    width: 100vw;
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: left;
     font-size: 20px;
+    padding: 0px 20px;
+    box-sizing: border-box;
 }
 #form-percent{
     margin: 10px auto;
@@ -59,7 +69,7 @@
 }
 .form-type-button{
     height: 40px;
-    width: 50%;
+    width: 100%;
     background: none;
     color: $light;
     font-size: 20px;

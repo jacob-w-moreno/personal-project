@@ -1,4 +1,6 @@
-import React, {useState, useEffect} from 'react';
+// STATUS REPORT: Currently trying to make it so that when you add income, if the total of the percentage categories do NOT equal 100, it will create an "Overflow" category and add the rest of the income to that. It currently creates the Overflow category but does not insert any money into it; it all goes to the other categories. I've tried calling props.getCategory, making the axios request an async function, and making that logic its own separate function, calling it within DistributeDollar, and having it return distributePercentage.
+
+import React, {useState} from 'react';
 import CurrencyInput from 'react-currency-input';
 import {connect} from 'react-redux';
 import {getCategory} from '../redux/reducer';
@@ -7,8 +9,10 @@ import axios from 'axios';
 const AddIncome = (props) => {
 
     const [name, setName] = useState('');
-    const[amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState(0);
     const [type] = useState('income');
+    // const [percent, setPercent] = useState([]);
+// const [overflow, setOverflow] = useState([]);
 
     let submit = async (income) => {
         await distributeDollar(income);
@@ -38,47 +42,58 @@ const AddIncome = (props) => {
         props.history.push('/budget')
     }
 
+    console.log('PROPS:', props.category);
+
     let distributeDollar = (income) => {
-        let dollars = props.category.filter(element => element.category_type === "Dollar");
+        if (props.category.length===0){console.log('NO CATEGORIES'); return}
+        let dollars = props.category.filter(element => element.category_type === "$");
         for (let i=0; i<dollars.length; i++) {
             if (dollars[i].category_balance < dollars[i].category_allocated) {
                 let difference = (+dollars[i].category_allocated - +dollars[i].category_balance).toFixed(2);
-        
                 if (+difference < +income) {
                     dollars[i].category_balance = +(+dollars[i].category_balance + +difference).toFixed(2);
                     income = (+income - +difference).toFixed(2);
-                    console.log(`IF IF ADDED ${dollars[i].category_balance} TO: ${dollars[i].category_name}`)
                 } else {
                     dollars[i].category_balance = +(+dollars[i].category_balance + +income).toFixed(2);
-                    console.log(`IF ELSE ADDED ${dollars[i].category_balance} TO: ${dollars[i].category_name}`);
                     return;
                 };
             };
         };
+// RELATED TO OVERFLOW
+        // const totals = props.category
+        //     .filter(element => element.category_type === "%")
+        //     .map(element => element.category_allocated)
+        //     .reduce((acc, curr) => acc+curr, 0);
+        // if (totals !== 100){
+        //     const overflowTotal = (100 - totals);
+        //     axios.post('/api/overflow', {overflowTotal})
+        //     .then((res)=>{
+        //     return})
+        //     // return distributePercent(income)})
+        //     .catch(console.log('FAIL: add overflow'))
+        // }
         return distributePercent(income);
     };
-      
     let distributePercent = income => {
-        let percent = props.category.filter(element => element.category_type === 'Percentage');
-
+// All of this information is already available on props.
+        // axios
+        //     .get('/api/category')
+        //     .then(res=>setPercent(res.data))
+        //     .catch(console.log('FAIL: get categories'));
+        //     console.log('PERCENT:', percent);
+        let percent = props.category.filter(element => element.category_type === '%');
+            console.log('PERCENT:', percent);
         let oldTotals = percent.map((el) => +el.category_balance)
-        .reduce((acc, curr) => acc + curr, 0);
+            .reduce((acc, curr) => acc + curr, 0);
+            console.log('OLD TOTALS:', oldTotals);
 
-        console.log(`old totals: ${oldTotals}`)
-        console.log(`income: ${income}`);
         for (let i=0; i<percent.length; i++) {
             let portion = (income * (percent[i].category_allocated/100)).toFixed(2);
-            console.log(portion);
             percent[i].category_balance = +(percent[i].category_balance + +portion).toFixed(2);
-            console.log(`Added ${portion} to ${percent[i].category_name}`)
         }
-        
         let newTotals = percent.map((el) => +el.category_balance)
         .reduce((acc, curr) => acc + curr, 0);
-        console.log(`new totals: ${newTotals}`)
-        
         if (+newTotals.toFixed(2) !== +oldTotals + +income) {
-            console.log('rounding error: solved')
         let difference = +(income - newTotals).toFixed(2);
         percent[0].category_balance = +(percent[0].category_balance + +difference);
         }

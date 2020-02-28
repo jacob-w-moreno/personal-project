@@ -14,7 +14,7 @@ $light: #ccc;
     width: $width;
 }
 
-@mixin mpat($margin, $padding){
+@mixin mp($margin, $padding){
     margin: $margin;
     padding: $padding;
     @include box();

@@ -52,7 +52,7 @@
     background: $orange;
     @include flexCenter(row);
         justify-content: space-between;
-    @include mpat(0, 0px 15px);
+    @include mp(0, 0px 15px);
 }
 .icon{
     @include dim(30px, 30px);

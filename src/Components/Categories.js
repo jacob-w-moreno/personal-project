@@ -9,9 +9,13 @@ const Categories = (props) => {
 
     return(
         <div className='mini-main'>
-            <h1 className = 'mini-gray'
+            <h1 className = { props.category_type === "$" ?
+                    props.category_balance === props.category_allocated ?
+                        'mini-gray-full'
+                        : 'mini-white'
+                    : 'mini-gray'}
                 onClick = {() => {props.setCatPennyFN(props.catPenny ? false : true)}}>
-                {props.category_type === 'Percentage' ?
+                {props.category_type === '%' ?
                     props.catPenny ? 
                         '%'+props.category_allocated 
                         : '%'+Math.trunc(props.category_allocated)
@@ -21,9 +25,13 @@ const Categories = (props) => {
                 }
             </h1>
             <Link to={`category/${props.category_name}`}>
-                <h1 className ='mini-name'>{props.category_name}</h1>
+                <h1 className={props.category_type === "$"?'mini-name':'mini-name-dollar'}>{props.category_name}</h1>
             </Link>
-            <h1 className ='mini-balance'
+            <h1 className = { props.category_type === "$" ?
+                    props.category_balance === props.category_allocated ?
+                        'mini-gray-full'
+                        : 'mini-white'
+                    : 'mini-gray'}
                 onClick = {() => {props.setCatPennyFN(props.catPenny ? false : true)}}>
                 {props.catPenny ?
                     '$'+(props.category_balance)

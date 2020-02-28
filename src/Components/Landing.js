@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 const Landing = (props) => {
 
@@ -7,6 +8,13 @@ const Landing = (props) => {
     const [lastName, setLast] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const register = () => {
+        axios
+            .post('/api/register', {firstName, lastName, email, password})
+            .then(props.history.push('/budget'))
+            .catch(console.log('FAIL: register'))
+    }
 
     return (
         <div className='landing'>
@@ -37,7 +45,8 @@ const Landing = (props) => {
                     maxLength='30'
                     type='password'
                     onChange={(event)=>{setPassword(event.target.value)}}/>
-                <button className='button'>Sign Up</button>
+                <button className='button'
+                    onClick={()=>register()}>Sign Up</button>
                 </form>
             
             <Link to='/' className='landing-link'>

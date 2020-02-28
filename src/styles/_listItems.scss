@@ -1,28 +1,65 @@
 .mini-main{
-    @include mpat(0, 10px 0px);
+    @include mp(0, 10px 0px);
     @include flexCenter(row);
     justify-content: space-between;
     border-bottom: 1px solid $light;
     color: $light;
     font-size: 20px;
+    &:hover {
+        background-color: rgb(125,125,125);
+    }
 }
 .mini-gray{
     width: 100px;
     @include box;
     text-align: left;
+    font-weight: bold;
     padding-left: 15px;
+}
+.mini-white{
+    width: 100px;
+    @include box;
+    text-align: left;
+    padding-left: 15px;
+    font-weight: bold;
+    color: white;
+}
+.mini-gray-full{
+    width: 100px;
+    @include box;
+    text-align: left;
+    padding-left: 15px;
+    font-weight: bold;
+    color: rgb(151, 255, 151);
 }
 .mini-name{
     width: 250px;
 
     color: white;
     font-weight: bold;
-    overflow: scroll;
+    overflow: scroll
+}
+.mini-name-dollar{
+    width: 250px;
+
+    // color: rgb(131, 255, 131);
+    color: $light;
+    font-weight: bold;
+    overflow: scroll
 }
 .mini-balance{
     @include box;
     width: 100px;
     text-align: right;
     padding-right: 15px;
-    color: white;
+    font-weight: bold;
+    color: $light;
+}
+.mini-balance-full{
+    @include box;
+    width: 100px;
+    text-align: right;
+    padding-right: 15px;
+    color: rgb(151, 255, 151);
+    font-weight: bold;
 }

@@ -30,13 +30,12 @@
     color: white;
 }
 .logo{
-    @include mpat(15px, 0);
+    @include mp(15px, 0);
+    // position: fixed;
+    // top: 0;
+    // left: 5px;
 
-    position: fixed;
-    top: 0;
-    left: 5px;
-
-    font-size: 33px;
+    font-size: 20px;
     font-weight: bold;
     color: white;
 }

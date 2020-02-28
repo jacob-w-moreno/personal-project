@@ -2,17 +2,19 @@ import React, {useState, useEffect} from 'react';
 import CurrencyInput from 'react-currency-input';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import axios from 'axios';
 import Transactions from './Transactions';
 
 const Category = (props) => {
 
     const [edit, toggleEdit] = useState(false);
-    const [editCatName, toggleEditCatName] = useState(false);
     const [name, setNewName] = useState('');
-    const [total, setNewTotal] = useState('');
-    const[amount, setNewAmount] = useState(0);
-    const [remove, toggleRemove] = useState(true);
-    const[type, setType]=useState('Dollar');
+    const [balance, setNewBalance] = useState('');
+    // const [amount, setNewAmount] = useState(0);
+    const [allocated, setNewAllocated] = useState(0);
+    const [categoryID, setCategoryID] = useState(0);
+    const [remove, toggleRemove] = useState(false);
+    const [type]=useState('$');
 
     let current = props.category.filter(el => (
         el.category_name===props.match.params.category_name
@@ -20,36 +22,52 @@ const Category = (props) => {
 
     useEffect(()=>{
         setNewName(current[0] && current[0].category_name)
-        setNewTotal(current[0] && (current[0].category_balance).toFixed(2));
-        setNewAmount(current[0] && (current[0].category_balance).toFixed(2));
+        setNewBalance(current[0] && (current[0].category_balance).toFixed(2));
+        // setNewAmount(current[0] && (current[0].category_balance).toFixed(2));
+        setCategoryID(current[0] && (current[0].category_id));
+        setNewAllocated(current[0] && (current[0].category_allocated).toFixed(2));
     },[])
 
-    console.log('current[0]:', current[0])
-    console.log('NEW NAME:', name);
+    const deleteCategory = () => {
+        axios
+            .delete(`/api/category/${categoryID}`)
+            .then(props.history.push('/budget'))
+            .catch(console.log('did not delete'))
+    }
 
-    console.log(edit);
+    const editCategory = () => {
+        axios
+            .put('/api/category', {name, balance, allocated, categoryID})
+            .then(()=>{toggleEdit(!edit); console.log('category updated')})
+            .catch(console.log('category not updated'))
+    }
+
     return(
         <div>
             {remove ?
                 <div id='outer-popup'>
                     <div id='inner-popup'>
-                        <p>Are you sure you want to delete {name}?</p>
-                        <p>This cannot be undone.</p>
-                        <button>Delete</button>
-                        <button>Cancel</button>
+                        <p>{name} still has <span>${balance}</span> in it.</p>
+                        <p id='margin'>What would you like to do with that money?</p>
+                        <button className='delete-button' onClick={()=>toggleRemove(false)}>Move it to Overflow</button>
+                        <button className='delete-button' onClick={()=>toggleRemove(false)}>Move it to a Specific Category</button>
+                        <button className='delete-button' onClick={()=>toggleRemove(false)}>Distribute it to Percentage</button>
+                        <button className='delete-button' id='delete-delete' onClick={()=>deleteCategory()}>Delete it</button>
+                        <button className='delete-button' id='delete-cancel' onClick={()=>toggleRemove(false)}>Cancel</button>
                     </div>
                 </div>
                 :null}
             
             <div className='header-main'>
                 <Link to='/budget'><div className='icon' id='back'/></Link>
-                {editCatName ? 
-                    <input className = 'input-category-name'
+                {edit ? 
+                    <form>
+                    <input id = 'edit-name'
                         value = {name}
                         onChange={e=>setNewName(e.target.value)}/>
+                    </form>
                     :
-                    <h1 className = 'header-heading'
-                        onClick={()=>toggleEditCatName(true)}>{name}</h1>}
+                    <h1 className = 'header-heading'>{name}</h1>}
                 
                 {/* <h1 className = 'header-heading'>CATEGORY</h1> */}
                 <div className='icon' id='add'/>
@@ -60,28 +78,39 @@ const Category = (props) => {
                 <div className='total-cat'>
                     <span>Allocated</span>
                     <div className='line'/>
-                    {current[0] && current[0].category_type === 'Dollar'?"$":"%"}
-                    {current[0] && current[0].category_allocated}
+                    {edit ?
+                        <CurrencyInput 
+                            value={allocated} 
+                            onChange={(e, maskedVal, floatVal)=>setNewAllocated(maskedVal)}
+                            prefix={type === '$'?"$":"%"}
+                            precision={type === '$'?2:0}
+                            id='edit-allocated'/>
+                    :
+                        <div>
+                            {current[0] && current[0].category_type === '$'?"$":"%"}
+                            {allocated}
+                        </div>
+                    }
                 </div>
                 <div className='circle'>
                     {edit ?
                     <CurrencyInput 
-                        value={amount} 
-                        onChange={(e, maskedVal, floatVal)=>setNewAmount(maskedVal)}
-                        prefix={type === 'Dollar'?"$":"%"}
-                        precision={type === 'Dollar'?2:0}
-                        className='form-input'/>
+                        value={balance} 
+                        onChange={(e, maskedVal, floatVal)=>setNewBalance(maskedVal)}
+                        prefix={type === '$'?"$":"%"}
+                        precision={type === '$'?2:0}
+                        id='edit-total'/>
                     :
-                    `$${total}`}
+                    `$${balance}`}
                 </div>
                 <div className='total-cat'>
                     {edit?
-                        <span onClick={()=>toggleEdit(!edit)}>Save</span> :
+                        <span onClick={()=>editCategory()}>Save</span> :
                         <span onClick={()=>toggleEdit(!edit)}>Edit</span>}
                     <div className='line'/>
                     {edit?
                         <span onClick={()=>toggleEdit(!edit)}>Cancel</span> :
-                        <span onClick={()=>toggleRemove(!remove)}>Delete</span>}
+                        <span onClick={()=>toggleRemove(true)}>Delete</span>}
                     {/* ${current[0] && (current[0].category_balance).toFixed(2)} */}
                 </div>
             </div>

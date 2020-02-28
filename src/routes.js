@@ -22,7 +22,7 @@ export default (
         <Route path = '/create-category' component = {CreateCategory}/>
         <Route path = '/create-transaction' component = {CreateTransaction}/>
         <Route path = '/add-income' component = {AddIncome}/>
-        <Route path = '/pie-chart' component = {UselessBudget}/>
+        {/* <Route path = '/pie-chart' component = {UselessBudget}/> */}
         <Route path = '/category/:category_name' component = {Category}/>
         <Route path = '/history' component = {History}/>
     </Switch>

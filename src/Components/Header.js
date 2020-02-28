@@ -28,8 +28,7 @@ const Header = (props) => {
                 props.logout();
             })
     }
-    let arr = props.history.location.pathname.split('/')
-    
+    // let arr = props.history.location.pathname.split('/')
     useEffect(() => {
         getUser()}, [])
 

@@ -12,14 +12,14 @@
 }
 .column-left{
     text-align: left;
-    width: 120px;
+    // width: 120px;
 }
 .column{
-    width: 120px;
+    // width: 120px;
 }
 .column-right{
     text-align: right;
-    width: 120px;
+    // width: 120px;
 }
 .input-category-name{
     font-family: raleway;
@@ -32,6 +32,7 @@
 }
 .header{
     padding: 12px 0px;
+    width: 100vw;
 
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -56,13 +57,13 @@
 }
 .main{
     margin: 0 auto;
-    width: 500px;
+    width: 100vw;
 }
 .totals{
     @include flexCenter(row);
     justify-content: space-between;
-    @include mpat(0 auto, 20px 10px);
-    width: 400px;
+    @include mp(0 auto, 20px 10px);
+    margin: 0 auto;
 }
 .total-cat{
     @include dim(70px, 100px);
@@ -76,8 +77,9 @@
 }
 .white-space{
     @include flexCenter(row);
-    @include mpat(0, 5px 20px);
+    @include mp(0, 5px 20px);
     justify-content: space-between;
+    width: 100vw;
 
     background: white;
     color: $gray;

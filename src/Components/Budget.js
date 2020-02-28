@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getCategory} from '../redux/reducer';
 import {getTransactions} from '../redux/reducer';
@@ -9,13 +9,14 @@ import axios from 'axios';
 const Budget = (props) => {
     const[showMore, toggleShowMore] = useState(false);
     const [catPenny, setCatPenny] = useState(false);
-    const [allocated, filterAllocated] = useState(true);
-    const [category, filterCategory] = useState(true);
-    const [balance, filterBalance] = useState(true);
+    const [edit, toggleEdit] = useState(true);
+    // const [allocated, filterAllocated] = useState(true);
+    // const [category, filterCategory] = useState(true);
+    // const [balance, filterBalance] = useState(true);
 
-    let today = new Date();
-    let month = (today.getMonth()+1);
-    let day = (today.getDate());
+    // let today = new Date();
+    // let month = (today.getMonth()+1);
+    // let day = (today.getDate());
     // console.log(today);
     // console.log(month);
     // console.log(day);
@@ -49,29 +50,29 @@ const Budget = (props) => {
             .catch(() => console.log('cannot delete'))
     }
 
-    let total = props.category.map(element =>
+    let total = props.category && props.category.map(element =>
         element.category_balance
     )
     .reduce((acc, curr)=> acc+curr, 0);
 
-    let dollarBalance = props.category.filter(element => element.category_type === "Dollar")
+    let dollarBalance = props.category && props.category.filter(element => element.category_type === "$")
     .map(element => element.category_balance)
     .reduce((acc, curr)=> acc+curr, 0);
 
-    let percentageBalance = props.category.filter(element => element.category_type === "Percentage")
+    let percentageBalance = props.category && props.category.filter(element => element.category_type === "%")
     .map(element =>
         element.category_balance
     )
     .reduce((acc, curr)=> acc+curr, 0);
 
-    let percentageTotal = props.category
-        .filter(element => element.category_type === 'Percentage')
+    let percentageTotal = props.category && props.category
+        .filter(element => element.category_type === '%')
         .map(element =>
             element.category_allocated)
         .reduce((acc, curr) => acc + curr, 0);
 
-    let dollarTotal = props.category
-        .filter(element => element.category_type === 'Dollar')
+    let dollarTotal = props.category && props.category
+        .filter(element => element.category_type === '$')
         .map(element =>
             element.category_allocated)
         .reduce((acc, curr) => acc + curr, 0);
@@ -106,7 +107,39 @@ const Budget = (props) => {
                 <span className='column-right'>Balance</span>
             </div>
             <div className='list'>
-                {props.category.sort((a,b)=>(a.category_balance < b.category_balance)?1:-1).map((element, index) => {
+                {props.category
+                    .filter(element => element.category_type === '$')
+                    .map((element, index) =>{
+                        return(
+                            <Categories
+                            key = {index}
+                            category_id = {element.category_id}
+                            category_name = {element.category_name}
+                            category_allocated = {element.category_allocated}
+                            category_type = {element.category_type}
+                            category_balance = {element.category_balance}
+                            catPenny = {catPenny}
+                            setCatPennyFN = {setCatPenny}
+                            removeFN = {remove}/>
+                        )
+                    })}
+                {props.category
+                    .filter(element => element.category_type === '%')
+                    .map((element, index) =>{
+                        return(
+                            <Categories
+                            key = {index}
+                            category_id = {element.category_id}
+                            category_name = {element.category_name}
+                            category_allocated = {element.category_allocated}
+                            category_type = {element.category_type}
+                            category_balance = {element.category_balance}
+                            catPenny = {catPenny}
+                            setCatPennyFN = {setCatPenny}
+                            removeFN = {remove}/>
+                        )
+                    })}
+                {/* {props.category.sort((a,b)=>(a.category_balance < b.category_balance)?1:-1).map((element, index) => {
                     return(
                         element.category_type === 'Unallocated' && element.category_balance === 0 
                             ? null:
@@ -121,7 +154,7 @@ const Budget = (props) => {
                             setCatPennyFN = {setCatPenny}
                             removeFN = {remove}/>
                         )
-                })}
+                })} */}
             </div>
         </div>
     )
