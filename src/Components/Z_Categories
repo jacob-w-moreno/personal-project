@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {getCategory} from '../redux/reducer';
 
 const Categories = (props) => {
     const [catInt, toggleCatInt] = useState(false);
