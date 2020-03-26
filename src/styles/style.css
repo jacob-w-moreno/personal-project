@@ -263,7 +263,7 @@
       -ms-flex-pack: center;
           justify-content: center;
   margin: 0;
-  padding: 5px 20px;
+  padding: 5px 10px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   -webkit-box-pack: justify;
@@ -333,14 +333,14 @@
   color: #97ff97;
 }
 
-.mini-name {
+.name-percent {
   width: 250px;
   color: white;
   font-weight: bold;
   overflow: scroll;
 }
 
-.mini-name-dollar {
+.name-dollar {
   width: 250px;
   color: #ccc;
   font-weight: bold;
@@ -645,6 +645,16 @@
   font-weight: bold;
   color: white;
   border: 2px solid white;
+}
+
+#currency {
+  -webkit-box-align: left;
+      -ms-flex-align: left;
+          align-items: left;
+  text-align: left;
+  padding-left: 5px;
+  width: 80px;
+  font-size: 18px;
 }
 
 #inner-popup {

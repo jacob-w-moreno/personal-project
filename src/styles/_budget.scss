@@ -77,7 +77,7 @@
 }
 .white-space{
     @include flexCenter(row);
-    @include mp(0, 5px 20px);
+    @include mp(0, 5px 10px);
     justify-content: space-between;
     width: 100vw;
 

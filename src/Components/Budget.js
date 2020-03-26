@@ -1,68 +1,113 @@
 import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 import Categories from './Categories';
-import EditCategories from './EditCategories';
+import EditPercent from './EditPercent';
+import EditDollar from './EditDollar';
 import axios from 'axios';
 
 const Budget = (props) => {
-    const [categories, setCategories] = useState([]);
-    const[showMore, toggleShowMore] = useState(false);
+    const [percent, setPercent] = useState([]);
+    const [dollar, setDollar] = useState([]);
+    const [showMore, toggleShowMore] = useState(false);
     const [catPenny, setCatPenny] = useState(false);
     const [edit, toggleEdit] = useState(true);
 
-    useEffect(() => {
+    useEffect(()=>{
         getCategory()
-    }, [])
+    },[])
 
     const getCategory = () => {
         axios
             .get('/api/category')
             .then((res) => {
-                setCategories(res.data)
+                setPercent(res.data.filter(element => element.category_type === "%"))
+                setDollar(res.data.filter(element => element.category_type === "$"))
             })
             .catch(() => console.log('did not get categories'))
     }
 
-    let total = categories
-        .map(element => element.category_balance)
-        .reduce((acc, curr)=> acc+curr, 0);
+    const addCategory = (e) => {
+        if (e.target.name==="%"){
+            const newPercent = [...percent]
+            newPercent.push({
+                category_name: 'New',
+                category_type: e.target.name,
+                category_allocated: 0,
+                category_balance: 0
+            })
+            setPercent(newPercent);
+        }
+        if (e.target.name==="$"){
+            const newDollar = [...dollar]
+            newDollar.push({
+                category_name: 'New',
+                category_type: e.target.name,
+                category_allocated: 0,
+                category_balance: 0
+            })
+            setDollar(newDollar)
+        }
+        console.log(e.target.name)
+    }
 
-    let dollarBalance = categories
-        .filter(element => element.category_type === "$")
-        .map(element => element.category_balance)
-        .reduce((acc, curr)=> acc+curr, 0);
+    console.log(dollar, percent)
 
-    let dollarTotal = props.category && props.category
-        .filter(element => element.category_type === '$')
-        .map(element => element.category_allocated)
-        .reduce((acc, curr) => acc + curr, 0);
+    const changeName = (index, value) => {
+        const newPercent = [...percent];
+        const newDollar = [...dollar];
+        newPercent[index]["category_name"] = value;
+        setPercent(newPercent);
+    }
 
-    let percentageBalance = categories
-        .filter(element => element.category_type === "%")
-        .map(element =>element.category_balance)
-        .reduce((acc, curr)=> acc+curr, 0);
+    const updatePercent = (index, value) => {
+        const newPercent = [...percent];
+        newPercent[index]["category_allocated"] = value;
+        newPercent[index]["category_balance"] = (newPercent[index]["category_allocated"] * .01 * remainder);
+        setPercent(newPercent);
+    }
 
-    let percentageTotal = categories
-        .filter(element => element.category_type === '%')
-        .map(element => element.category_allocated)
-        .reduce((acc, curr) => acc + curr, 0);
+    const updateDollar = (index, value) => {
+        const newDollar = [...dollar];
+        newDollar[index]["category_allocated"] = value;
+        newDollar[index]["category_balance"] = value;
+        setDollar(newDollar);
+
+        let remainder = (total - dollar.reduce((acc, curr) => acc + curr.category_balance, 0)).toFixed(2);
+
+        const newPercent = [...percent];
+        newPercent.forEach((element) => element.category_balance = (element.category_allocated * .01 * remainder))
+        setPercent(newPercent);
+    }
+    
+    let total = 500;
+    
+    let remainder = (total - dollar.reduce((acc, curr) => acc + curr.category_balance, 0)).toFixed(2);
+    
+    let dollarBalance = dollar
+        .reduce((acc, curr)=> acc + curr.category_balance, 0);
+
+    let dollarAllocated = dollar
+        .reduce((acc, curr) => acc + curr.category_allocated, 0);
+
+    let percentageBalance = percent
+        .reduce((acc, curr)=> acc + curr.category_balance, 0);
+
+    let percentageAllocated = percent
+        .reduce((acc, curr) => acc + curr.category_allocated, 0);
 
     return( <div className='main'>
         {edit ? 
-            <div className='totals'
-                onClick={()=>toggleShowMore(showMore ? false : true)}>
-
+            <div className='totals' onClick={()=>toggleShowMore(showMore ? false : true)}>
                 <div className='circle'>${showMore ? total.toFixed(2) : Math.trunc(total)}</div>
                 <div className='total-cat'>
                     <span>${showMore ? dollarBalance.toFixed(2) : Math.trunc(dollarBalance)}</span>
                     <div className='line'/>
-                    <span>${showMore ? dollarTotal.toFixed(2) : Math.trunc(dollarTotal)}</span>
+                    <span>${showMore ? dollarAllocated.toFixed(2) : Math.trunc(dollarAllocated)}</span>
                 </div>
-                
                 <div className='total-cat'>
                     <span>${showMore ? percentageBalance.toFixed(2) : Math.trunc(percentageBalance)}</span>
                     <div className='line'/>
-                    <span>%{percentageTotal}</span>
+                    <span>%{percentageAllocated}</span>
                 </div>
             </div>
         :
@@ -70,13 +115,13 @@ const Budget = (props) => {
                 <div className='total-cat'>
                     <span>${showMore ? dollarBalance.toFixed(2) : Math.trunc(dollarBalance)}</span>
                     <div className='line'/>
-                    <span>${showMore ? dollarTotal.toFixed(2) : Math.trunc(dollarTotal)}</span>
+                    <span>${showMore ? dollarAllocated.toFixed(2) : Math.trunc(dollarAllocated)}</span>
                 </div>
                 <div className='circle'>${showMore ? total.toFixed(2) : Math.trunc(total)}</div>
                 <div className='total-cat'>
                     <span>${showMore ? percentageBalance.toFixed(2) : Math.trunc(percentageBalance)}</span>
                     <div className='line'/>
-                    <span>%{percentageTotal}</span>
+                    <span>%{percentageAllocated}</span>
                 </div>
             </div>
         }
@@ -90,38 +135,43 @@ const Budget = (props) => {
 
         {edit ?
             <div className='list'>
-                {props.category
-                    .filter(element => element.category_type === '$')
+                {dollar
                     .map((element, index) =>{
-                        return( <EditCategories
+                        return( <EditDollar
                             key = {index}
-                            category_id = {element.category_id}
+                            index = {index}
+                            id = {element.category_id}
                             category_name = {element.category_name}
                             category_allocated = {element.category_allocated}
                             category_type = {element.category_type}
                             category_balance = {element.category_balance}
                             catPenny = {catPenny}
                             setCatPennyFN = {setCatPenny}
+                            updateDollar = {updateDollar}
                             total = {total}/>
                         )
                     })
                 }
-                {props.category
-                    .filter(element => element.category_type === '%')
+                {percent
                     .map((element, index) =>{
-                        return( <EditCategories
+                        return( <EditPercent
                             key = {index}
-                            category_id = {element.category_id}
+                            index = {index}
+                            id = {element.category_id}
                             category_name = {element.category_name}
                             category_allocated = {element.category_allocated}
                             category_type = {element.category_type}
                             category_balance = {element.category_balance}
                             catPenny = {catPenny}
                             setCatPennyFN = {setCatPenny}
-                            total = {total}/>
+                            updatePercent = {updatePercent}
+                            changeName = {changeName}
+                            remainder = {remainder}/>
                         )
                     })
                 }
+                <button className='icon' id='add' name='%' onClick={(e)=>addCategory(e)}>+ %</button>
+                <button className='icon' id='add' name='$' onClick={(e)=>addCategory(e)}>+ $</button>
             </div>
             :
             <div className='list'>
@@ -130,6 +180,7 @@ const Budget = (props) => {
                     .map((element, index) =>{
                         return( <Categories
                             key = {index}
+                            id = {index}
                             category_id = {element.category_id}
                             category_name = {element.category_name}
                             category_allocated = {element.category_allocated}
@@ -145,6 +196,7 @@ const Budget = (props) => {
                     .map((element, index) =>{
                         return( <Categories
                             key = {index}
+                            id = {index}
                             category_id = {element.category_id}
                             category_name = {element.category_name}
                             category_allocated = {element.category_allocated}
@@ -159,6 +211,8 @@ const Budget = (props) => {
         }
         <button className = 'form-add-button' 
             onClick={()=>toggleEdit(edit? false: true)}>EDIT</button>
+        <h1>{remainder}</h1>
+        <h1>percentage totals: {percent.reduce((acc, curr) => acc + curr.category_balance, 0).toFixed(2)}</h1>
     </div>)
 }
 
